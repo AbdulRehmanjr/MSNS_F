@@ -1,0 +1,131 @@
+<form [formGroup]="studentForm" (ngSubmit)="onSubmit()">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="d-flex flex-column gap-2">
+        <label htmlFor="studentName">Student Name</label>
+        <input
+          type="text"
+          class="form-input"
+          id="studentName"
+          formControlName="studentName"
+        />
+      </div>
+      <div
+        class="alert alert-danger"
+        *ngIf="
+          studentForm.get('studentName').invalid &&
+          studentForm.get('studentName').touched
+        "
+      >
+        Student Name is required.
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="d-flex flex-column gap-2">
+        <label htmlFor="fatherName">Father Name</label>
+        <input
+          type="text"
+          class="form-input"
+          id="fatherName"
+          formControlName="fatherName"
+        />
+      </div>
+      <div
+        class="alert alert-danger"
+        *ngIf="
+          studentForm.get('fatherName').invalid &&
+          studentForm.get('fatherName').touched
+        "
+      >
+        Father Name is required.
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="d-flex flex-column gap-2">
+        <label htmlFor="bForm">B Form</label>
+        <input
+          type="text"
+          class="form-input"
+          id="bForm"
+          formControlName="bForm"
+        />
+      </div>
+      <div
+        class="alert alert-danger"
+        *ngIf="
+          studentForm.get('bForm').invalid &&
+          studentForm.get('bForm').touched
+        "
+      >
+        B-Form/CNIC Name is required.
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="d-flex flex-column gap-2">
+        <label htmlFor="dateOfBirth">Date of Birth</label>
+        <input
+          type="text"
+          class="form-input"
+          id="dateOfBirth"
+          formControlName="dateOfBirth"
+        />
+      </div>
+      <div
+        class="alert alert-danger"
+        *ngIf="
+          studentForm.get('dateOfBirth').invalid &&
+          studentForm.get('dateOfBirth').touched
+        "
+      >
+        Date Of Birth is required.
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="d-flex flex-column gap-2">
+        <label htmlFor="contactPhone">Contact No.</label>
+        <input
+          type="text"
+          class="form-input"
+          id="contactPhone"
+          formControlName="contactPhone"
+        />
+      </div>
+      <div
+        class="alert alert-danger"
+        *ngIf="
+          studentForm.get('contactPhone').invalid &&
+          studentForm.get('contactPhone').touched
+        "
+      >
+        Contact No. is required.
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="d-flex flex-column gap-2">
+        <label htmlFor="address">Address</label>
+        <input
+          type="text"
+          class="form-input"
+          id="address"
+          formControlName="address"
+        />
+      </div>
+      <div
+        class="alert alert-danger"
+        *ngIf="
+          studentForm.get('address').invalid &&
+          studentForm.get('address').touched
+        "
+      >
+        Address is required.
+      </div>
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-success my-2">Submit</button>
+</form>

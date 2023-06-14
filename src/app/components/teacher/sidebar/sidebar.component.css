@@ -1,0 +1,21 @@
+.nav-link:active{
+  background-color: #007437;
+}
+
+.nav-link:hover{
+  background-color: #007437;
+  color: #fff;
+}
+.link{
+  margin-top:5px;
+  font-weight: 700;
+  color: #000;
+}
+.height{
+  height: 84.5vh;
+}
+.sticky{
+  position: sticky;
+  top:95px;
+  left: 0;
+}

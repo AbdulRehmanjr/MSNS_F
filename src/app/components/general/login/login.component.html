@@ -1,0 +1,40 @@
+<section class="container mt-4">
+  <div class="card" style="border-radius: 1rem">
+    <div class="row">
+      <div class="col-md-6 d-none d-md-block">
+        <img src="assets/logo/login_logo.png" alt="login form" />
+      </div>
+      <div class="col-md-5 m-auto">
+        <h1 class="heading">MSNS</h1>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <!-- Email input -->
+          <div class="form-outline mb-4">
+            <input
+              type="email"
+              id="form2Example1"
+              formControlName="email"
+              class="form-control"
+              placeholder="Enter your email"
+            />
+            <label class="form-label" for="form2Example1">Email address</label>
+          </div>
+          <div class="form-outline mb-4">
+            <p-password [toggleMask]="true" formControlName="password"></p-password>
+            <br/>
+            <label class="form-label" for="form2Example2">Password</label>
+          </div>
+          <div class="row mb-4">
+            <div class="col">
+              <span>Don't Remember the Password? <a href="#!">Forgot password</a></span>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-success btn-block mb-4">
+            Sign in
+          </button>
+
+
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
