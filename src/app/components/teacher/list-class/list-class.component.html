@@ -1,0 +1,144 @@
+<section id="class-list">
+  <p-table
+  #dt
+  [value]="classes"
+  dataKey="classId"
+  [rowHover]="true"
+  [rows]="5"
+  [showCurrentPageReport]="true"
+  [rowsPerPageOptions]="[5, 10, 25]"
+  [paginator]="true"
+  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} Classes"
+  [filterDelay]="0"
+  [globalFilterFields]="[
+    'classId',
+    'className',
+
+  ]"
+  >
+  <ng-template pTemplate="caption">
+    <div class="table-header">
+      List of Students
+      <span class="p-input-icon-left mx-3">
+        <input
+          type="text"
+          (input)="dt.filterGlobal($event.target['value'], 'contains')"
+          placeholder="Global Search"
+        />
+      </span>
+
+      <button type="button" class="btn btn-add" (click)="addClass()">
+        <i class="fa-solid fa-plus px-2"></i>
+        New
+      </button>
+    </div>
+  </ng-template>
+  <ng-template pTemplate="header">
+    <tr>
+      <th pSortableColumn="classId" >
+        <div class="d-flex justify-content-between align-items-center">
+          Id
+          <p-sortIcon field="classId"></p-sortIcon>
+          <p-columnFilter
+            type="text"
+            field="classId"
+            display="menu"
+            class="ml-auto"
+          ></p-columnFilter>
+        </div>
+      </th>
+      <th pSortableColumn="className" >
+        <div class="d-flex justify-content-between align-items-center">
+          Class Name
+          <p-sortIcon field="className"></p-sortIcon>
+          <p-columnFilter
+            type="text"
+            field="className"
+            display="menu"
+            class="ml-auto"
+          ></p-columnFilter>
+        </div>
+      </th>
+
+      <th ></th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-classInfo>
+    <tr class="p-selectable-row">
+      <td>
+        {{ classInfo.classId }}
+      </td>
+      <td>
+        {{ classInfo.className }}
+      </td>
+
+      <td>
+        <button
+          type="button"
+          class="btn btn-outline-success"
+          (click)="updateClass(classInfo)"
+        >
+          Edit
+        </button>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="emptymessage">
+    <tr>
+      <td colspan="8">No customers found.</td>
+    </tr>
+  </ng-template>
+  </p-table>
+  <p-dialog
+  [(visible)]="editDialog"
+  header="Edit Class"
+  [modal]="true"
+  styleClass="dialog-style"
+  style="z-index: 9999999990"
+>
+  <ng-template pTemplate="body">
+    <form #editForm="ngForm" (ngSubmit)="editSubmit()">
+
+          <div class="d-flex flex-column gap-2">
+            <label htmlFor="className">Class Name</label>
+            <input
+            type="text"
+              class="form-input"
+              id="className"
+              name="className"
+              #className="ngModel"
+              aria-describedby="studentName-help"
+              [(ngModel)]="classInfo.className"
+              required="true"
+            />
+          </div>
+          <ng-container *ngIf="className.touched && className.invalid && className.value === ''">
+            <div class="alert alert-danger" role="alert">
+              Class Name is required.
+            </div>
+          </ng-container>
+          <button
+          class="btn btn-success my-2"
+          type="submit"
+          [disabled]="editForm.invalid"
+        >
+          <i class="fa-solid fa-pen-to-square"></i>
+          Update
+        </button>
+      </form>
+
+  </ng-template>
+</p-dialog>
+  <p-dialog
+  [(visible)]="addDialog"
+  header="Add Student"
+  [modal]="true"
+  styleClass="dialog-style"
+  style="z-index: 9999999990"
+>
+  <ng-template pTemplate="body">
+  <teacher-add-class  (classAdded)="hideDialog()"></teacher-add-class>
+  </ng-template>
+</p-dialog>
+</section>
+

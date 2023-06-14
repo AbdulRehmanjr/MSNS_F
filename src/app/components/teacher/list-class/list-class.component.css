@@ -1,0 +1,31 @@
+::ng-deep .p-datatable .p-datatable-header{
+  background: #007437;
+  color: #fff;
+}
+
+
+::ng-deep .p-datatable .p-datatable-thead > tr > th{
+  background-color: #EAF3EE;
+}
+input{
+  border-radius: 5px;
+}
+
+label{
+  font-weight: 900;
+}
+
+.form-input, .form-input:focus, .form-input:hover{
+  border: 2px solid #EAF3EE;
+  outline: none;
+}
+
+.btn-add{
+  color:#fff;
+  border:2px solid #fff;
+}
+.alert{
+  padding: 0;
+  width: fit-content;
+  height: 30px;
+}

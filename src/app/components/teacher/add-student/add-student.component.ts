@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -9,7 +9,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class AddStudentComponent  implements OnInit{
 
   studentForm:FormGroup
+
+  @Output()
+  studentAdded = new EventEmitter<boolean>()
   constructor(private fb:FormBuilder){}
+
   ngOnInit(): void {
     this.createForm();
   }
@@ -29,5 +33,6 @@ export class AddStudentComponent  implements OnInit{
 
   onSubmit(){
 
+    this.studentAdded.emit(true)
   }
 }

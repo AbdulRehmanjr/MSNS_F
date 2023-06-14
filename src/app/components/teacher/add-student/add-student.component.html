@@ -42,7 +42,7 @@
       </div>
     </div>
 
-    <div class="col-md-6">
+    <div class="col-md-4">
       <div class="d-flex flex-column gap-2">
         <label htmlFor="bForm">B Form</label>
         <input
@@ -63,11 +63,11 @@
       </div>
     </div>
 
-    <div class="col-md-6">
+    <div class="col-md-4">
       <div class="d-flex flex-column gap-2">
         <label htmlFor="dateOfBirth">Date of Birth</label>
         <input
-          type="text"
+          type="date"
           class="form-input"
           id="dateOfBirth"
           formControlName="dateOfBirth"
@@ -83,12 +83,34 @@
         Date Of Birth is required.
       </div>
     </div>
+    <div class="col-md-4">
+      <div class="d-flex flex-column gap-2">
+        <label htmlFor="picture">Picture</label>
+        <input
+          type="file"
+          accept="image/**"
+          class="form-input"
+          id="picture"
+          formControlName="picture"
+        />
+      </div>
+      <div
+        class="alert alert-danger"
+        *ngIf="
+          studentForm.get('picture').invalid &&
+          studentForm.get('picture').touched
+        "
+      >
+        Picture  is required.
+      </div>
+    </div>
 
     <div class="col-md-6">
       <div class="d-flex flex-column gap-2">
         <label htmlFor="contactPhone">Contact No.</label>
         <input
-          type="text"
+          type="tel"
+          patten="0-9{11}"
           class="form-input"
           id="contactPhone"
           formControlName="contactPhone"

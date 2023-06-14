@@ -16,6 +16,8 @@ import { SidebarComponent } from '../../components/teacher/sidebar/sidebar.compo
 import { DashboardComponent } from '../../components/teacher/dashboard/dashboard.component';
 import { StudentListComponent } from '../../components/teacher/student-list/student-list.component';
 import { AddStudentComponent } from '../../components/teacher/add-student/add-student.component';
+import { ListClassComponent } from '../../components/teacher/list-class/list-class.component';
+import { AddClassComponent } from '../../components/teacher/add-class/add-class.component';
 
 
 
@@ -27,6 +29,9 @@ const routes:Routes = [
       },
       {
         path:'student-list',component:StudentListComponent
+      },
+      {
+        path:'class-list',component:ListClassComponent
       }
     ]
   }
@@ -38,7 +43,9 @@ const routes:Routes = [
     SidebarComponent,
     DashboardComponent,
     StudentListComponent,
-    AddStudentComponent
+    AddStudentComponent,
+    ListClassComponent,
+    AddClassComponent
   ],
   imports: [
     FormsModule,

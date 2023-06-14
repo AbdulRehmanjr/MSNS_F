@@ -12,8 +12,7 @@ export class StudentListComponent implements OnInit {
   student: Student
   addDialog: boolean = false
   editDialog: boolean = false
-  @Input()
-  action:boolean
+
 
   students:Student[] = [
     {
@@ -226,9 +225,14 @@ export class StudentListComponent implements OnInit {
 
   }
 
+
   updateStudent(student: Student){
     this.student = student
     this.editDialog = true
+  }
+
+  hideDialog(){
+    this.addDialog=false
   }
   editSubmit() {
   }
