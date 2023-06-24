@@ -7,8 +7,11 @@ import {Student} from 'src/app/classes/Student';
   styleUrls: ['./student-list.component.css']
 })
 export class StudentListComponent implements OnInit {
+onChange($event: Event) {
+throw new Error('Method not implemented.');
+}
 
-
+  placeholder:any
   student: Student
   addDialog: boolean = false
   editDialog: boolean = false

@@ -3,30 +3,7 @@
   color: #fff;
 }
 
-.profile-pic {
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  width: 100px;
-  height: 100px;
-  border: none;
-  border-radius: 50%;
-}
-.edit-image-label {
-  display: block;
-  position: relative;
-  cursor: pointer;
-}
 
-.edit-image-label:hover .profile-pic {
-  filter: brightness(80%);
-}
-
-.edit-image-label:active .profile-pic {
-  filter: brightness(70%);
-}
-
-.edit-image-input {
-  display: none;
-}
 ::ng-deep .p-datatable .p-datatable-thead > tr > th{
   background-color: #EAF3EE;
 }

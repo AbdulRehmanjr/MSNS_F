@@ -9,6 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { PasswordModule } from 'primeng/password';
 import { MessagesModule } from 'primeng/messages';
 import { SharedModule } from 'primeng/api';
+import { SignupComponent } from '../../components/general/signup/signup.component';
 
 const routes: Routes  = [
 
@@ -18,7 +19,8 @@ const routes: Routes  = [
   declarations: [
 
     GeneralComponent,
-    LoginComponent
+    LoginComponent,
+    SignupComponent
   ],
   imports: [
     SharedModule,

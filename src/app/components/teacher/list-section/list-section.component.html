@@ -1,9 +1,8 @@
-<section id="class-list">
-  <p-toast position="bottom-right" ></p-toast>
+<section id="section-list">
   <p-table
   #dt
-  [value]="classes"
-  dataKey="classId"
+  [value]="sections"
+  dataKey="sectionId"
   [rowHover]="true"
   [rows]="5"
   [showCurrentPageReport]="true"
@@ -12,14 +11,14 @@
   currentPageReportTemplate="Showing {first} to {last} of {totalRecords} Classes"
   [filterDelay]="0"
   [globalFilterFields]="[
-    'classId',
-    'className',
+    'sectionId',
+    'sectionName',
 
   ]"
   >
   <ng-template pTemplate="caption">
     <div class="table-header">
-      List of Classes
+      List of Sections
       <span class="p-input-icon-left mx-3">
         <input
           type="text"
@@ -28,7 +27,7 @@
         />
       </span>
 
-      <button type="button" class="btn btn-add" (click)="addClass()">
+      <button type="button" class="btn btn-add" (click)="addSection()">
         <i class="fa-solid fa-plus px-2"></i>
         New
       </button>
@@ -39,22 +38,22 @@
       <th pSortableColumn="classId" >
         <div class="d-flex justify-content-between align-items-center">
           Id
-          <p-sortIcon field="classId"></p-sortIcon>
+          <p-sortIcon field="sectionId"></p-sortIcon>
           <p-columnFilter
             type="text"
-            field="classId"
+            field="sectionId"
             display="menu"
             class="ml-auto"
           ></p-columnFilter>
         </div>
       </th>
-      <th pSortableColumn="className" >
+      <th pSortableColumn="sectionName" >
         <div class="d-flex justify-content-between align-items-center">
           Class Name
-          <p-sortIcon field="className"></p-sortIcon>
+          <p-sortIcon field="sectionName"></p-sortIcon>
           <p-columnFilter
             type="text"
-            field="className"
+            field="sectionName"
             display="menu"
             class="ml-auto"
           ></p-columnFilter>
@@ -64,20 +63,20 @@
       <th ></th>
     </tr>
   </ng-template>
-  <ng-template pTemplate="body" let-classInfo>
+  <ng-template pTemplate="body" let-section>
     <tr class="p-selectable-row">
       <td>
-        {{ classInfo.classId }}
+        {{ section.sectionId }}
       </td>
       <td>
-        {{ classInfo.className }}
+        {{ section.sectionName }}
       </td>
 
       <td>
         <button
           type="button"
           class="btn btn-outline-success"
-          (click)="updateClass(classInfo)"
+          (click)="updateSection(section)"
         >
           Edit
         </button>
@@ -86,13 +85,13 @@
   </ng-template>
   <ng-template pTemplate="emptymessage">
     <tr>
-      <td colspan="8">No Class Found.</td>
+      <td colspan="8">No customers found.</td>
     </tr>
   </ng-template>
   </p-table>
   <p-dialog
   [(visible)]="editDialog"
-  header="Edit Class"
+  header="Edit Section"
   [modal]="true"
   styleClass="dialog-style"
   style="z-index: 9999999990"
@@ -101,21 +100,21 @@
     <form #editForm="ngForm" (ngSubmit)="editSubmit()">
 
           <div class="d-flex flex-column gap-2">
-            <label htmlFor="className">Class Name</label>
+            <label htmlFor="sectionName">Section Name</label>
             <input
             type="text"
               class="form-input"
-              id="className"
-              name="className"
-              #className="ngModel"
+              id="sectionName"
+              name="sectionName"
+              #sectionName="ngModel"
               aria-describedby="studentName-help"
-              [(ngModel)]="classInfo.className"
+              [(ngModel)]="section.sectionName"
               required="true"
             />
           </div>
-          <ng-container *ngIf="className.touched && className.invalid && className.value === ''">
+          <ng-container *ngIf="sectionName.touched && sectionName.invalid && sectionName.value === ''">
             <div class="alert alert-danger" role="alert">
-              Class Name is required.
+              <Section></Section> Name is required.
             </div>
           </ng-container>
           <button
@@ -132,14 +131,40 @@
 </p-dialog>
   <p-dialog
   [(visible)]="addDialog"
-  header="Add Class"
+  header="Add Section"
   [modal]="true"
   styleClass="dialog-style"
   style="z-index: 9999999990"
 >
   <ng-template pTemplate="body">
-  <teacher-add-class  (classAdded)="hideDialog()"></teacher-add-class>
+    <form #addForm="ngForm" (ngSubmit)="addSubmit(addForm)">
+
+      <div class="d-flex flex-column gap-2">
+        <label htmlFor="sectionName">Section Name</label>
+        <input
+        type="text"
+          class="form-input"
+          id="sectionName"
+          name="sectionName"
+          #sectionName="ngModel"
+          ngModel
+          aria-describedby="studentName-help"
+        />
+      </div>
+      <ng-container *ngIf="sectionName.touched && sectionName.invalid && sectionName == undefined">
+        <div class="alert alert-danger" role="alert">
+          <Section></Section> Name is required.
+        </div>
+      </ng-container>
+      <button
+      class="btn btn-success my-2"
+      type="submit"
+      [disabled]="addForm.invalid"
+    >
+      <i class="fa-solid fa-pen-to-square"></i>
+      Add
+    </button>
+  </form>
   </ng-template>
 </p-dialog>
 </section>
-

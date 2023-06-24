@@ -1,0 +1,116 @@
+<section id="student-class">
+  <p-table
+    #dt
+    [value]="studentClass"
+    dataKey="scId"
+    [rowHover]="true"
+    [rows]="5"
+    [showCurrentPageReport]="true"
+    [rowsPerPageOptions]="[5, 10, 25]"
+    [paginator]="true"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} Classes"
+    [filterDelay]="0"
+    [globalFilterFields]="['student.studentName']"
+  >
+    <ng-template pTemplate="caption">
+      <div class="table-header">
+        List of Students
+        <span class="p-input-icon-left mx-3">
+          <input
+            type="text"
+            (input)="dt.filterGlobal($event.target['value'], 'contains')"
+            placeholder="Global Search"
+          />
+        </span>
+
+        <button type="button" class="btn btn-add" (click)="addStudent()">
+          <i class="fa-solid fa-plus px-2"></i>
+          Add
+        </button>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th pSortableColumn="student.studentName" style="min-width: 10rem">
+          <div class="d-flex justify-content-between align-items-center">
+            Student Name
+            <p-sortIcon field="student.studentName"></p-sortIcon>
+            <p-columnFilter
+              type="text"
+              field="student.studentName"
+              display="menu"
+              class="ml-auto"
+            ></p-columnFilter>
+          </div>
+        </th>
+        <th pSortableColumn="student.rollNumber" style="min-width: 10rem">
+          <div class="d-flex justify-content-between align-items-center">
+            Roll Number
+            <p-sortIcon field="student.rollNumber"></p-sortIcon>
+            <p-columnFilter
+              type="text"
+              field="student.rollNumber"
+              display="menu"
+              class="ml-auto"
+            ></p-columnFilter>
+          </div>
+        </th>
+        <th pSortableColumn="student.fatherName" style="min-width: 10rem">
+          <div class="d-flex justify-content-between align-items-center">
+            Father Name
+            <p-sortIcon field="student.fatherName"></p-sortIcon>
+            <p-columnFilter
+              type="text"
+              field="student.fatherName"
+              display="menu"
+              class="ml-auto"
+            ></p-columnFilter>
+          </div>
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-studentClass>
+      <tr class="p-selectable-row">
+        <td>
+          {{studentClass.student.studentName}}
+        </td>
+        <td>
+          {{ studentClass.student.rollNumber}}
+        </td>
+        <td>{{studentClass.student.fatherName}}</td>
+        <td>
+          <button
+            type="button"
+            class="btn btn-outline-success"
+          >
+            Edit
+          </button>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="8">No student found.</td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+  <p-dialog
+  [(visible)]="addDialog"
+  header="Add Class"
+  [modal]="true"
+  styleClass="dialog-style"
+  style="z-index: 9999999990"
+>
+  <ng-template pTemplate="body">
+    <div class="row">
+      <div class="col-md-6">
+        <input type="text" #search="ngModel" ngModel>
+        <button type="submit" (click)="searchStudent(search.value)">
+          Search
+        </button>
+      </div>
+    </div>
+  </ng-template>
+</p-dialog>
+</section>

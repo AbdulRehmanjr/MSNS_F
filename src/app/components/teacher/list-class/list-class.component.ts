@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MessageService } from 'primeng/api';
 import { ClassInfo } from 'src/app/classes/class-info';
+import { ClassService } from 'src/app/services/class.service';
 
 @Component({
   selector: 'app-list-class',
@@ -12,49 +14,37 @@ export class ListClassComponent implements OnInit {
   addDialog:boolean = false
   editDialog:boolean= false
   classInfo: ClassInfo
-  classes: ClassInfo[] = [
-    {
-      classId: 1,
-      className: 'One'
-    },
-    {
-      classId: 2,
-      className: 'Two'
-    }, {
-      classId: 3,
-      className: 'Three'
-    }, {
-      classId: 4,
-      className: 'Four'
-    },
-    {
-      classId: 4,
-      className: 'Four'
-    }, {
-      classId: 4,
-      className: 'Four'
-    }, {
-      classId: 4,
-      className: 'Four'
-    }, {
-      classId: 4,
-      className: 'Four'
-    }, {
-      classId: 4,
-      className: 'Four'
-    }, {
-      classId: 4,
-      className: 'Four'
-    },
-  ]
-  constructor() {
-
-  }
+  classes: ClassInfo[]
+  constructor(
+    private classService:ClassService,
+    private message:MessageService
+  ) {}
 
   ngOnInit(): void {
-
+    this.fetchClasses()
   }
 
+  //* http related functions
+  fetchClasses(){
+    this.classService.getAllClasses().subscribe({
+      next: (response: ClassInfo[]) => {
+          this.classes = response
+      },
+      error: (error: any) => {
+        this.message.add({
+          severity:'warn',
+          summary:'Not Found',
+          detail:`${error.error}`
+        })
+        console.log(error)
+      },
+      complete: () => {
+
+      }
+    })
+  }
+
+  //* dialog related functions
   addClass(){
     this.addDialog=true
   }

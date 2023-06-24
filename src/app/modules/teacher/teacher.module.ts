@@ -10,6 +10,8 @@ import { SharedModule } from '../shared/shared.module';
 // ng prime
 import { TableModule } from 'primeng/table';
 import { DialogModule } from 'primeng/dialog';
+import { ToastModule } from 'primeng/toast';
+
 
 import { TeacherComponent } from './teacher.component';
 import { SidebarComponent } from '../../components/teacher/sidebar/sidebar.component';
@@ -18,6 +20,10 @@ import { StudentListComponent } from '../../components/teacher/student-list/stud
 import { AddStudentComponent } from '../../components/teacher/add-student/add-student.component';
 import { ListClassComponent } from '../../components/teacher/list-class/list-class.component';
 import { AddClassComponent } from '../../components/teacher/add-class/add-class.component';
+import { ListSectionComponent } from '../../components/teacher/list-section/list-section.component';
+import { ClassWiseListComponent } from '../../components/teacher/class-wise-list/class-wise-list.component';
+import { ClassDetailComponent } from 'src/app/components/teacher/class-detail/class-detail.component';
+import { MessageService } from 'primeng/api';
 
 
 
@@ -32,22 +38,35 @@ const routes:Routes = [
       },
       {
         path:'class-list',component:ListClassComponent
+      },
+      {
+        path:'section-list',component:ListSectionComponent
+      }
+      ,
+      {
+        path:'class-wise-list',component:ClassWiseListComponent
+      },
+      {
+        path:'class-detail/:classId',component:ClassDetailComponent
       }
     ]
   }
 ]
 @NgModule({
   declarations: [
-
+    ClassDetailComponent,
     TeacherComponent,
     SidebarComponent,
     DashboardComponent,
     StudentListComponent,
     AddStudentComponent,
     ListClassComponent,
-    AddClassComponent
+    AddClassComponent,
+    ListSectionComponent,
+    ClassWiseListComponent
   ],
   imports: [
+    ToastModule,
     FormsModule,
     ReactiveFormsModule,
     DialogModule,
@@ -58,6 +77,9 @@ const routes:Routes = [
   ],
   exports:[
     RouterModule
+  ],
+  providers:[
+    MessageService
   ]
 })
 export class TeacherModule { }

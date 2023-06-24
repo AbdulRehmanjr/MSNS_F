@@ -1,0 +1,20 @@
+<section id="class-wise-list">
+  <div class="row mx-3">
+    <ng-container *ngFor="let class of classes">
+      <div class="col-md-4 my-2">
+        <div
+          class="card card-cover h-100 overflow-hidden text-white rounded-5 shadow-lg"
+        >
+          <div class="text-center h-100 p-5 pb-3 text-white text-shadow-1">
+
+            <img src="assets/icon_class.png" alt="class icon"  style="border:none; border-radius: 50%;">
+            <h2 class="mt-1 display-6 lh-1"> {{class.className}}</h2>
+            <button class="btn btn-success" routerLink="/teacher/class-detail/{{class.classId}}"> View</button>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
+  </div>
+
+</section>

@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { Routes,RouterModule } from '@angular/router';
 import { GeneralModule } from './modules/general/general.module';
 import { LoginComponent } from './components/general/login/login.component';
-import { TeacherComponent } from './modules/teacher/teacher.component';
 import { TeacherModule } from './modules/teacher/teacher.module';
 import { SharedModule } from 'primeng/api';
 
