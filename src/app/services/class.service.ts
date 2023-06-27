@@ -14,7 +14,7 @@ export class ClassService {
     private http:HttpClient
   ){}
 
-  saveClass(classInfo:ClassInfo){
+  createClass(classInfo:ClassInfo){
     return this.http.post(`${this.url}/create`,classInfo,{
       observe:'body'
     })
@@ -22,6 +22,12 @@ export class ClassService {
 
   getAllClasses(){
     return this.http.get(`${this.url}/all`,{
+      observe:'body'
+    })
+  }
+
+  updateClass(classInfo:ClassInfo){
+    return this.http.put(`${this.url}/update`,classInfo,{
       observe:'body'
     })
   }

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { MessageService } from 'primeng/api';
 import { Section } from 'src/app/classes/section';
+import { SectionService } from 'src/app/services/section.service';
 
 @Component({
   selector: 'app-list-section',
@@ -12,26 +14,28 @@ export class ListSectionComponent implements OnInit {
   addDialog: boolean = false
   editDialog: boolean = false
   section: Section
-  sections: Section[] = [
-    {
-      sectionId: 1,
-      sectionName: 'A'
-    },
-    {
-      sectionId: 2,
-      sectionName: 'B'
-    },
-    {
-      sectionId: 3,
-      sectionName: 'C'
-    }
-  ]
+  sections: Section[]
 
 
 
-  constructor() { }
+  constructor(private sectionService:SectionService,
+    private messageService:MessageService) { }
+
   ngOnInit(): void {
+    this.fetchSections()
+  }
 
+
+  fetchSections(){
+    this.sectionService.getAllSections().subscribe({
+      next: (response: Section[]) => this.sections = response,
+      error: (error: any) => this.messageService.add({
+        severity:'warn',
+        summary:'Failed!!',
+        detail:`${error.error}`
+      }),
+      complete: () => {}
+    })
   }
   hideDialog() {
     this.addDialog = false
@@ -49,12 +53,21 @@ export class ListSectionComponent implements OnInit {
     this.addDialog = true
   }
   addSubmit(form: NgForm) {
-    if(form.value.sectionName ===''){
+    const name = form.value.sectionName
+    if( name ==='' || name ===' '){
         return
     }
+    let data = new Section
+    data.sectionName = name
+    this.sectionService.createSection(data).subscribe({
+      next: (response: Section) => {},
+      error: (error: any) => this.messageService.add({
+        severity:'warn',
+        summary:'Failed!!',
+        detail:`${error.error}`
+      }),
+      complete: () => {this.fetchSections()}
+    })
     this.addDialog = false
-
-
-
   }
 }

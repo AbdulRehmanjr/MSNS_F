@@ -11,32 +11,31 @@ import { ClassService } from 'src/app/services/class.service';
 export class ListClassComponent implements OnInit {
 
 
-  addDialog:boolean = false
-  editDialog:boolean= false
+  addDialog: boolean = false
+  editDialog: boolean = false
   classInfo: ClassInfo
   classes: ClassInfo[]
   constructor(
-    private classService:ClassService,
-    private message:MessageService
-  ) {}
+    private classService: ClassService,
+    private message: MessageService
+  ) { }
 
   ngOnInit(): void {
     this.fetchClasses()
   }
 
   //* http related functions
-  fetchClasses(){
+  fetchClasses() {
     this.classService.getAllClasses().subscribe({
       next: (response: ClassInfo[]) => {
-          this.classes = response
+        this.classes = response
       },
       error: (error: any) => {
         this.message.add({
-          severity:'warn',
-          summary:'Not Found',
-          detail:`${error.error}`
+          severity: 'warn',
+          summary: 'Not Found',
+          detail: `${error.error}`
         })
-        console.log(error)
       },
       complete: () => {
 
@@ -45,21 +44,38 @@ export class ListClassComponent implements OnInit {
   }
 
   //* dialog related functions
-  addClass(){
-    this.addDialog=true
+  addClass() {
+    this.addDialog = true
   }
-  updateClass(classInfo:ClassInfo){
+  updateClass(classInfo: ClassInfo) {
 
     this.classInfo = classInfo
     this.editDialog = true
 
   }
-  editSubmit(){
+  editSubmit() {
 
-    this.editDialog = false
+    this.classService.updateClass(this.classInfo).subscribe({
+      next: (response: ClassInfo) => this.message.add({
+        severity: 'success',
+        summary: 'Updation',
+        detail: 'Class Updation SuccessFully.'
+      }),
+      error: (error: any) => this.message.add({
+        severity: 'error',
+        summary: 'Updation',
+        detail: `${error.error}`
+      }),
+      complete: () => {
+        this.fetchClasses()
+        this.editDialog = false
+      }
+    })
+
   }
 
-  hideDialog(){
+  hideDialog() {
     this.addDialog = false
+    this.fetchClasses()
   }
 }

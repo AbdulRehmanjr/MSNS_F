@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { environment } from '../variables/environment';
 import { HttpClient } from '@angular/common/http';
 import { Login } from 'src/app/classes/login';
-import { User } from '../classes/user';
+import { User } from 'src/app/classes/user';
+import { Role } from '../classes/role';
 
 @Injectable({
   providedIn: 'root'
@@ -32,19 +33,24 @@ export class LoginService {
   }
 
    getAuthority() {
-    let user = JSON.parse(localStorage.getItem('user'))
+    return JSON.parse(localStorage.getItem('user'))['role']['authority']
 
-    return user.authority;
+
   }
 
    setUser(data: User) {
 
-    let current_user = new User();
+    let current_user = new User()
+    let role = new Role()
 
     current_user.userId = data.userId
     current_user.userName = data.userName
-    current_user.roles = data.roles
+    current_user.userEmail = data.userEmail
 
+    role.roleName = data.role.roleName
+    role.authority  = data.role.authority
+
+    current_user.role = role
 
     localStorage.setItem('user', JSON.stringify(current_user));
   }

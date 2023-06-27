@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Password } from 'primeng/password';
+import { MessageService } from 'primeng/api';
 import { Login } from 'src/app/classes/login';
+import { User } from 'src/app/classes/user';
 import { LoginService } from 'src/app/services/login.service';
 
 @Component({
@@ -15,7 +16,7 @@ export class LoginComponent implements OnInit {
 
   loginForm: FormGroup
   constructor(private router: Router, private formBuilder: FormBuilder,
-    private loginService: LoginService) { }
+    private loginService: LoginService,private message:MessageService) { }
   ngOnInit(): void {
 
     this.createForm()
@@ -38,9 +39,20 @@ export class LoginComponent implements OnInit {
 
         this.loginService.setToken(data.token)
 
+
+      },
+      error: (err) => {
+        console.error(err)
+        this.message.add({
+          severity:'error',
+          summary:'Wrong Info',
+          detail:`${err.error}`
+        })
+      },
+      complete: () => {
         this.loginService.currentUser(login).subscribe(
           {
-            next: (data: any) => {
+            next: (data: User) => {
               this.loginService.setUser(data)
             }
             , error(err: any) {
@@ -52,12 +64,6 @@ export class LoginComponent implements OnInit {
           }
 
         )
-      },
-      error: (err) => {
-
-      },
-      complete: () => {
-
       }
     })
   }

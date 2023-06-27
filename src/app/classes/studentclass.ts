@@ -1,5 +1,6 @@
-import { Student } from "./Student"
+
 import { ClassInfo } from "./class-info"
+import { Student } from "./student"
 
 export class StudentClass {
 

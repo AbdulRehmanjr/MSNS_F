@@ -4,6 +4,7 @@ export class User {
   userId:number
   userName:string
   userPassword:string
+  userEmail:string
   userPicture:string
-  roles:Role[]
+  role:Role
 }

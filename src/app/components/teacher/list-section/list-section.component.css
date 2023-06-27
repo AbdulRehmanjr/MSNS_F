@@ -1,8 +1,11 @@
+
+::ng-deep .p-datatable{
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 1);
+}
 ::ng-deep .p-datatable .p-datatable-header{
   background: #007437;
   color: #fff;
 }
-
 
 ::ng-deep .p-datatable .p-datatable-thead > tr > th{
   background-color: #EAF3EE;
