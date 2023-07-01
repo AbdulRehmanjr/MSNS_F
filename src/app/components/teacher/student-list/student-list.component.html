@@ -1,4 +1,5 @@
 <section id="student-list rounded">
+  <p-toast position="bottom-right"></p-toast>
   <p-table
     #dt
     [value]="students"
@@ -58,18 +59,6 @@
             <p-columnFilter
               type="text"
               field="studentName"
-              display="menu"
-              class="ml-auto"
-            ></p-columnFilter>
-          </div>
-        </th>
-        <th pSortableColumn="rollNumber" style="min-width: 10rem">
-          <div class="d-flex justify-content-between align-items-center">
-            Roll Number
-            <p-sortIcon field="rollNumber"></p-sortIcon>
-            <p-columnFilter
-              type="text"
-              field="rollNumber"
               display="menu"
               class="ml-auto"
             ></p-columnFilter>
@@ -152,9 +141,6 @@
           {{ student.studentName }}
         </td>
         <td>
-          {{ student.rollNumber }}
-        </td>
-        <td>
           {{ student.fatherName }}
         </td>
         <td>
@@ -176,7 +162,7 @@
             class="btn btn-outline-success"
             (click)="updateStudent(student)"
           >
-            Edit
+          <i class="fa-solid fa-pen-to-square"></i> Edit
           </button>
         </td>
       </tr>
@@ -199,9 +185,9 @@
       <form #editForm="ngForm" (ngSubmit)="editSubmit()">
         <div class="row">
           <div class="col-12">
-            <label for="edit-image-input" class="edit-image-label">
+            <label for="edit-image-input" class="edit-image-label my-2">
               <input type="file" id="edit-image-input" class="edit-image-input" (change)="onChange($event)"/>
-              <img class="profile-pic" *ngIf="placeholder == undefined" src="{{student.picture}}" alt="profile picture" />
+              <img class="profile-pic" *ngIf="placeholder == undefined" src="data:image/jpeg; base64,{{ student?.picture }}" alt="profile picture" />
               <img class="profile-pic" *ngIf="placeholder" [src]="placeholder" alt="profile picture" />
             </label>
           </div>
@@ -337,7 +323,7 @@
         <button
           class="btn btn-success my-2"
           type="submit"
-          [disabled]="editForm.invalid"
+          (click)="editSubmit()"
         >
           <i class="fa-solid fa-pen-to-square"></i>
           Update

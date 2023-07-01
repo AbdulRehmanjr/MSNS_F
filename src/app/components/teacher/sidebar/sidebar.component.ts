@@ -7,7 +7,9 @@ import { Component } from '@angular/core';
 })
 export class SidebarComponent {
 
-  preventNavigation(event: Event) {
-    event.preventDefault();
+  image:any
+  ngOnInit (): void {
+      this.image = JSON.parse(localStorage.getItem('user'))['userPicture']
+
   }
 }

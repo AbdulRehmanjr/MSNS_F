@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { MessageService } from 'primeng/api';
 import { Student } from 'src/app/classes/student';
 import { StudentClass } from 'src/app/classes/studentclass';
+import { StudentClassService } from 'src/app/services/student-class.service';
+import { StudentService } from 'src/app/services/student.service';
 
 @Component({
   selector: 'app-class-detail',
@@ -9,230 +13,64 @@ import { StudentClass } from 'src/app/classes/studentclass';
 })
 export class ClassDetailComponent implements OnInit {
 
-  addDialog:boolean = false
-  studentClass:StudentClass[]= [
-    {
-      scId: 1,
-      class: {
-        classId: 1,
-        className: "Mathematics",
-      },
-      student: {
-        studentId: 1,
-        rollNumber: "A001",
-        studentName: "Aohn Doe",
-        fatherName: "Michael Doe",
-        bForm: "1234567890",
-        dateOfBirth: "2000-01-01",
-        contactPhone: "1234567890",
-        address: "123 Main Street",
-        picture: "https://example.com/picture.jpg",
-      },
-    },
-    {
-      scId: 1,
-      class: {
-        classId: 1,
-        className: "Mathematics",
-      },
-      student: {
-        studentId: 1,
-        rollNumber: "A001",
-        studentName: "John Doe",
-        fatherName: "Michael Doe",
-        bForm: "1234567890",
-        dateOfBirth: "2000-01-01",
-        contactPhone: "1234567890",
-        address: "123 Main Street",
-        picture: "https://example.com/picture.jpg",
-      }
-    },
-    {
-      scId: 1,
-      class: {
-        classId: 1,
-        className: "Mathematics",
-      },
-      student: {
-        studentId: 1,
-        rollNumber: "A001",
-        studentName: "John Doe",
-        fatherName: "Michael Doe",
-        bForm: "1234567890",
-        dateOfBirth: "2000-01-01",
-        contactPhone: "1234567890",
-        address: "123 Main Street",
-        picture: "https://example.com/picture.jpg",
-      }
-    },
-    {
-      scId: 1,
-      class: {
-        classId: 1,
-        className: "Mathematics",
-      },
-      student: {
-        studentId: 1,
-        rollNumber: "A001",
-        studentName: "John Doe",
-        fatherName: "Michael Doe",
-        bForm: "1234567890",
-        dateOfBirth: "2000-01-01",
-        contactPhone: "1234567890",
-        address: "123 Main Street",
-        picture: "https://example.com/picture.jpg",
-      }
-    },
-    {
-      scId: 1,
-      class: {
-        classId: 1,
-        className: "Mathematics",
-      },
-      student: {
-        studentId: 1,
-        rollNumber: "A001",
-        studentName: "John Doe",
-        fatherName: "Michael Doe",
-        bForm: "1234567890",
-        dateOfBirth: "2000-01-01",
-        contactPhone: "1234567890",
-        address: "123 Main Street",
-        picture: "https://example.com/picture.jpg",
-      }
-    },
-    {
-      scId: 1,
-      class: {
-        classId: 1,
-        className: "Mathematics",
-      },
-      student: {
-        studentId: 1,
-        rollNumber: "A001",
-        studentName: "John Doe",
-        fatherName: "Michael Doe",
-        bForm: "1234567890",
-        dateOfBirth: "2000-01-01",
-        contactPhone: "1234567890",
-        address: "123 Main Street",
-        picture: "https://example.com/picture.jpg",
-      }
-    },
-    {
-      scId: 1,
-      class: {
-        classId: 1,
-        className: "Mathematics",
-      },
-      student: {
-        studentId: 1,
-        rollNumber: "A001",
-        studentName: "John Doe",
-        fatherName: "Michael Doe",
-        bForm: "1234567890",
-        dateOfBirth: "2000-01-01",
-        contactPhone: "1234567890",
-        address: "123 Main Street",
-        picture: "https://example.com/picture.jpg",
-      }
-    },
-    {
-      scId: 1,
-      class: {
-        classId: 1,
-        className: "Mathematics",
-      },
-      student: {
-        studentId: 1,
-        rollNumber: "A001",
-        studentName: "John Doe",
-        fatherName: "Michael Doe",
-        bForm: "1234567890",
-        dateOfBirth: "2000-01-01",
-        contactPhone: "1234567890",
-        address: "123 Main Street",
-        picture: "https://example.com/picture.jpg",
-      }
-    },
-    {
-      scId: 1,
-      class: {
-        classId: 1,
-        className: "Mathematics",
-      },
-      student: {
-        studentId: 1,
-        rollNumber: "A001",
-        studentName: "John Doe",
-        fatherName: "Michael Doe",
-        bForm: "1234567890",
-        dateOfBirth: "2000-01-01",
-        contactPhone: "1234567890",
-        address: "123 Main Street",
-        picture: "https://example.com/picture.jpg",
-      }
-    },
-    {
-      scId: 1,
-      class: {
-        classId: 1,
-        className: "Mathematics",
-      },
-      student: {
-        studentId: 1,
-        rollNumber: "A001",
-        studentName: "John Doe",
-        fatherName: "Michael Doe",
-        bForm: "1234567890",
-        dateOfBirth: "2000-01-01",
-        contactPhone: "1234567890",
-        address: "123 Main Street",
-        picture: "https://example.com/picture.jpg",
-      }
-    },
-    {
-      scId: 1,
-      class: {
-        classId: 1,
-        className: "Mathematics",
-      },
-      student: {
-        studentId: 1,
-        rollNumber: "A001",
-        studentName: "John Doe",
-        fatherName: "Michael Doe",
-        bForm: "1234567890",
-        dateOfBirth: "2000-01-01",
-        contactPhone: "1234567890",
-        address: "123 Main Street",
-        picture: "https://example.com/picture.jpg",
-      }
-    },
-
-
-  ]
-
+  addDialog: boolean = false
+  studentsClass: StudentClass[]
   students: Student[]
-  constructor(){
+  selectedStudents: Student[] = []
+  classId: number
 
-  }
+  constructor(private studentService: StudentService
+    , private scService: StudentClassService,
+    private route: ActivatedRoute,
+    private message: MessageService
+  ) { }
+
   ngOnInit(): void {
-
+    this.classId = +this.route.snapshot.paramMap.get('classId');
+    this.fetchStudents()
   }
 
-  addStudent(){
+  addStudent() {
     this.addDialog = true
   }
 
-  hideDialog(){
-
+  fetchStudents() {
+    this.scService.getAllStudentsByClassId(this.classId).subscribe({
+      next: (response: StudentClass[]) => this.studentsClass = response,
+      error: (error: any) => { },
+      complete: () => { }
+    })
   }
-  searchStudent(name:string){
-      this.studentClass.forEach(student =>{
-        if(student.student.studentName == name){
-          this.students.push(student.student)
-        }
+
+  addStudentToClass() {
+
+    if (this.selectedStudents.length != 0) {
+
+      this.scService.addStudentInClass(this.selectedStudents, this.classId).subscribe({
+        next: (response: any) => this.message.add({
+          severity: 'success',
+          summary: 'Student Added',
+          detail: `${response.body}`
+        }),
+        error: (error: any) => this.message.add({
+          severity: 'warn',
+          summary: 'Error',
+          detail: `${error.error}`
+        }),
+        complete: () => { }
       })
+    }
+  }
+  /**
+   * @param name
+   */
+  searchStudent(name: string) {
+    this.studentService.getAllStudentsByStudentName(name).subscribe({
+      next: (response: Student[]) => this.students = response,
+      error: (error: any) => { },
+      complete: () => {
+
+      }
+    })
   }
 }

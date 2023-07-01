@@ -11,8 +11,12 @@ import { SharedModule } from '../shared/shared.module';
 import { TableModule } from 'primeng/table';
 import { DialogModule } from 'primeng/dialog';
 import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
+import { PickListModule } from 'primeng/picklist';
 
 
+
+// componenets
 import { TeacherComponent } from './teacher.component';
 import { SidebarComponent } from '../../components/teacher/sidebar/sidebar.component';
 import { DashboardComponent } from '../../components/teacher/dashboard/dashboard.component';
@@ -23,7 +27,8 @@ import { AddClassComponent } from '../../components/teacher/add-class/add-class.
 import { ListSectionComponent } from '../../components/teacher/list-section/list-section.component';
 import { ClassWiseListComponent } from '../../components/teacher/class-wise-list/class-wise-list.component';
 import { ClassDetailComponent } from 'src/app/components/teacher/class-detail/class-detail.component';
-import { MessageService } from 'primeng/api';
+
+
 
 
 
@@ -66,6 +71,7 @@ const routes:Routes = [
     ClassWiseListComponent
   ],
   imports: [
+    PickListModule,
     ToastModule,
     FormsModule,
     ReactiveFormsModule,

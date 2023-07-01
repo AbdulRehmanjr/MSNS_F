@@ -27,3 +27,36 @@ body {
     padding-left: 0;
   }
 }
+.p-datatable{
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 1);
+}.p-datatable .p-datatable-header{
+  background: #007437;
+  color: #fff;
+}
+
+.p-datatable .p-datatable-thead > tr > th{
+  background-color: #EAF3EE;
+}
+
+.p-button{
+  background: #007437;
+  border: #007437;
+}
+.p-button:enabled:hover{
+  background: #007437;
+  border: #007437;
+
+}
+.p-dialog{
+  position: fixed;
+  top:8%;
+  left:0;
+}
+.p-picklist .p-picklist-list .p-picklist-item.p-highlight{
+  color: #007437;
+}
+.p-picklist .p-picklist-header{
+ background-color:  #007437;
+ color:#fff;
+
+}

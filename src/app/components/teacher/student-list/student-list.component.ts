@@ -10,53 +10,94 @@ import { StudentService } from 'src/app/services/student.service';
   styleUrls: ['./student-list.component.css']
 })
 export class StudentListComponent implements OnInit {
-onChange($event: Event) {
-throw new Error('Method not implemented.');
-}
 
-  placeholder:any
+
+  placeholder: any
   student: Student
   addDialog: boolean = false
   editDialog: boolean = false
+  file: File
+  students: Student[]
 
-
-  students:Student[]
-
-  constructor(private fb:FormBuilder,private studentService:StudentService
-    ,private message:MessageService){}
+  constructor(private fb: FormBuilder, private studentService: StudentService
+    , private message: MessageService) { }
 
   ngOnInit(): void {
 
     this.fetchStudents()
   }
+  onChange($event: Event) {
+    this.file = $event.target['files'][0]
+    const reader = new FileReader();
+    reader.onload = (e: any) => {
+      this.placeholder = e.target.result;
+    };
+    reader.readAsDataURL($event.target['files'][0])
+  }
 
-
-  fetchStudents(){
+  fetchStudents() {
     this.studentService.getAllStudents().subscribe({
       next: (response: Student[]) => this.students = response,
       error: (error: any) => this.message.add({
-        severity:'warn',
-        summary:'Failed!!!'
+        severity: 'warn',
+        summary: 'Failed!!!'
       }),
-      complete: () => {}
+      complete: () => { }
     })
   }
-  updateStudent(student: Student){
+  updateStudent(student: Student) {
     this.student = student
     this.editDialog = true
   }
 
 
   editSubmit() {
+    if(this.file!=undefined){
+      this.studentService.updateStudentBlob(this.file,this.student).subscribe({
+        next: (response: Student) => {
+          this.message.add({
+            severity: 'success',
+            summary: 'Success!!'
+          })
+        },
+        error: (error: any) => this.message.add({
+          severity: 'warn',
+          summary: `${error.error}`
+        }),
+        complete: () => {
+          this.editDialog = false
+          this.fetchStudents()
+        }
+      })
+    }
+    else{
+      this.studentService.updateStudent(this.student).subscribe({
+        next: (response: Student) => {
+          this.message.add({
+            severity: 'success',
+            summary: 'Success!!'
+          })
+        },
+        error: (error: any) => this.message.add({
+          severity: 'warn',
+          summary: `${error.error}`
+        }),
+        complete: () => {
+          this.editDialog = false
+          this.fetchStudents()
+        }
+      })
+    }
+
   }
 
   //* from add-student component
-  addStudent(){
+  addStudent() {
     this.addDialog = true
   }
-  hideDialog(){
+  hideDialog() {
     this.fetchStudents()
-    this.addDialog=false
+    this.addDialog = false
   }
 }
 

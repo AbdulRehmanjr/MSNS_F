@@ -46,6 +46,7 @@ export class LoginService {
     current_user.userId = data.userId
     current_user.userName = data.userName
     current_user.userEmail = data.userEmail
+    current_user.userPicture = data.userPicture
 
     role.roleName = data.role.roleName
     role.authority  = data.role.authority

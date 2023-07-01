@@ -30,5 +30,27 @@ export class StudentService {
     })
   }
 
+  updateStudent(student:Student){
+    return this.http.post(`${this.url}/update`,student,{
+      observe:'body'
+    })
+  }
+  updateStudentBlob(file:File,student:Student){
+
+    let data = new FormData()
+    data.append("file",file)
+    data.append("student",JSON.stringify(student))
+
+
+    return this.http.post(`${this.url}/update-blob`,data,{
+      observe:'body'
+    })
+  }
+
+  getAllStudentsByStudentName(name:string){
+    return this.http.get(`${this.url}/search/${name}`,{
+      observe:'body'
+    })
+  }
 
 }

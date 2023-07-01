@@ -1,8 +1,3 @@
-::ng-deep .p-datatable .p-datatable-header{
-  background: #007437;
-  color: #fff;
-}
-
 
 ::ng-deep .p-datatable .p-datatable-thead > tr > th{
   background-color: #EAF3EE;
@@ -28,4 +23,47 @@ label{
   padding: 0;
   width: fit-content;
   height: 30px;
+}
+
+.input-container {
+  width: 220px;
+  position: relative;
+}
+
+.icon {
+  position: absolute;
+  right: 10px;
+  top: calc(50% + 5px);
+  transform: translateY(calc(-50% - 5px));
+}
+
+.input {
+  width: 100%;
+  height: 40px;
+  padding: 10px;
+  transition: .2s linear;
+  border: 2.5px solid #007437;
+  font-size: 14px;
+  letter-spacing: 2px;
+}
+
+.input:focus {
+  outline: none;
+  border: 0.5px solid #007437;
+  box-shadow: -5px -5px 0px #007437;
+}
+
+.input-container:hover > .icon {
+  animation: anim 1s linear infinite;
+}
+
+@keyframes anim {
+  0%,
+  100% {
+    transform: translateY(calc(-50% - 5px)) scale(1);
+  }
+
+  50% {
+    transform: translateY(calc(-50% - 5px)) scale(1.1);
+  }
 }

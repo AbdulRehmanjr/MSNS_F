@@ -1,46 +1,39 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { MessageService } from 'primeng/api';
 import { ClassInfo } from 'src/app/classes/class-info';
+import { ClassService } from 'src/app/services/class.service';
 
 @Component({
   selector: 'app-class-wise-list',
   templateUrl: './class-wise-list.component.html',
   styleUrls: ['./class-wise-list.component.css']
 })
-export class ClassWiseListComponent {
+export class ClassWiseListComponent  implements OnInit{
 
-  classes: ClassInfo[] = [
-    {
-      classId: 1,
-      className: 'One'
-    },
-    {
-      classId: 2,
-      className: 'Two'
-    }, {
-      classId: 3,
-      className: 'Three'
-    }, {
-      classId: 4,
-      className: 'Four'
-    },
-    {
-      classId: 4,
-      className: 'Four'
-    }, {
-      classId: 4,
-      className: 'Four'
-    }, {
-      classId: 4,
-      className: 'Four'
-    }, {
-      classId: 4,
-      className: 'Four'
-    }, {
-      classId: 4,
-      className: 'Four'
-    }, {
-      classId: 4,
-      className: 'Four'
-    },
-  ]
+
+  classes:ClassInfo[]
+
+  constructor(private classService:ClassService,private message:MessageService){}
+
+  ngOnInit(): void {
+    this.fetchClasses()
+  }
+
+  fetchClasses(){
+    this.classService.getAllClasses().subscribe({
+      next: (response: ClassInfo[]) => this.classes = response,
+      error: (error: any) => this.message.add({
+        severity:'warn',
+        summary:'Failed',
+        detail:`${error.error}`
+
+      }),
+      complete: () => {}
+    })
+  }
+
+  addStudent(){
+
+  }
+
 }

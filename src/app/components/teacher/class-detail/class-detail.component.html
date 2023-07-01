@@ -1,26 +1,15 @@
 <section id="student-class">
-  <p-table
-    #dt
-    [value]="studentClass"
-    dataKey="scId"
-    [rowHover]="true"
-    [rows]="5"
-    [showCurrentPageReport]="true"
-    [rowsPerPageOptions]="[5, 10, 25]"
-    [paginator]="true"
-    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} Classes"
-    [filterDelay]="0"
-    [globalFilterFields]="['student.studentName']"
-  >
+  <p-toast position="bottom-right"></p-toast>
+  <p-table #dt [value]="studentsClass" dataKey="scId" [rowHover]="true" [rows]="5" [showCurrentPageReport]="true"
+    [rowsPerPageOptions]="[5, 10, 25]" [paginator]="true"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} Students" [filterDelay]="0"
+    [globalFilterFields]="['student.studentName']">
     <ng-template pTemplate="caption">
       <div class="table-header">
         List of Students
         <span class="p-input-icon-left mx-3">
-          <input
-            type="text"
-            (input)="dt.filterGlobal($event.target['value'], 'contains')"
-            placeholder="Global Search"
-          />
+          <input type="text" (input)="dt.filterGlobal($event.target['value'], 'contains')"
+            placeholder="Global Search" />
         </span>
 
         <button type="button" class="btn btn-add" (click)="addStudent()">
@@ -31,40 +20,37 @@
     </ng-template>
     <ng-template pTemplate="header">
       <tr>
-        <th pSortableColumn="student.studentName" style="min-width: 10rem">
+        <th pSortableColumn="student.studentName" style="width:10rem;">
           <div class="d-flex justify-content-between align-items-center">
             Student Name
             <p-sortIcon field="student.studentName"></p-sortIcon>
-            <p-columnFilter
-              type="text"
-              field="student.studentName"
-              display="menu"
-              class="ml-auto"
-            ></p-columnFilter>
+            <p-columnFilter type="text" field="student.studentName" display="menu" class="ml-auto"></p-columnFilter>
           </div>
         </th>
-        <th pSortableColumn="student.rollNumber" style="min-width: 10rem">
+        <th pSortableColumn="student.rollNumber" style="width:10rem;">
           <div class="d-flex justify-content-between align-items-center">
             Roll Number
             <p-sortIcon field="student.rollNumber"></p-sortIcon>
-            <p-columnFilter
-              type="text"
-              field="student.rollNumber"
-              display="menu"
-              class="ml-auto"
-            ></p-columnFilter>
+            <p-columnFilter type="text" field="student.rollNumber" display="menu" class="ml-auto"></p-columnFilter>
           </div>
         </th>
         <th pSortableColumn="student.fatherName" style="min-width: 10rem">
           <div class="d-flex justify-content-between align-items-center">
             Father Name
             <p-sortIcon field="student.fatherName"></p-sortIcon>
-            <p-columnFilter
-              type="text"
-              field="student.fatherName"
-              display="menu"
-              class="ml-auto"
-            ></p-columnFilter>
+            <p-columnFilter type="text" field="student.fatherName" display="menu" class="ml-auto"></p-columnFilter>
+          </div>
+        </th>
+        <th pSortableColumn="student.bForm" style="min-width: 10rem">
+          <div class="d-flex justify-content-between align-items-center">
+            B-Form
+            <p-columnFilter type="text" field="student.bForm" display="menu" class="ml-auto"></p-columnFilter>
+          </div>
+        </th>
+        <th pSortableColumn="student.address" style="min-width: 10rem">
+          <div class="d-flex justify-content-between align-items-center">
+            Address
+            <p-columnFilter type="text" field="student.address" display="menu" class="ml-auto"></p-columnFilter>
           </div>
         </th>
       </tr>
@@ -78,11 +64,10 @@
           {{ studentClass.student.rollNumber}}
         </td>
         <td>{{studentClass.student.fatherName}}</td>
+        <td>{{studentClass.student.bForm}}</td>
+        <td>{{studentClass.student.address}}</td>
         <td>
-          <button
-            type="button"
-            class="btn btn-outline-success"
-          >
+          <button type="button" class="btn btn-outline-success">
             Edit
           </button>
         </td>
@@ -94,23 +79,57 @@
       </tr>
     </ng-template>
   </p-table>
+  <p-dialog [(visible)]="addDialog" header="Add Student to Class" [modal]="true" styleClass="dialog-style w-100">
+    <ng-template pTemplate="body">
+      <div class="row">
+        <div class="col my-2 py-2">
+          <div class="input-container">
+            <input type="text" name="text" class="input" placeholder="search..." #studentName>
+            <span class="icon">
+              <button class="btn btn-outlined-round" (click)="searchStudent(studentName.value)">
+                <svg width="19px" height="19px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                  <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                  <g id="SVGRepo_iconCarrier">
+                    <path opacity="1" d="M14 5H20" stroke="#000" stroke-width="1.5" stroke-linecap="round"
+                      stroke-linejoin="round"></path>
+                    <path opacity="1" d="M14 8H17" stroke="#000" stroke-width="1.5" stroke-linecap="round"
+                      stroke-linejoin="round"></path>
+                    <path d="M21 11.5C21 16.75 16.75 21 11.5 21C6.25 21 2 16.75 2 11.5C2 6.25 6.25 2 11.5 2"
+                      stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path opacity="1" d="M22 22L20 20" stroke="#000" stroke-width="3.5" stroke-linecap="round"
+                      stroke-linejoin="round"></path>
+                  </g>
+                </svg>
+              </button>
 
-  <p-dialog
-  [(visible)]="addDialog"
-  header="Add Class"
-  [modal]="true"
-  styleClass="dialog-style"
-  style="z-index: 9999999990"
->
-  <ng-template pTemplate="body">
-    <div class="row">
-      <div class="col-md-6">
-        <input type="text" #search="ngModel" ngModel>
-        <button type="submit" (click)="searchStudent(search.value)">
-          Search
-        </button>
+            </span>
+          </div>
+        </div>
       </div>
-    </div>
-  </ng-template>
-</p-dialog>
+      <div class="row">
+        <div class="col-md-10 offset-md-1">
+          <p-pickList [source]="students" [target]="selectedStudents" sourceHeader="Available" targetHeader="Selected"
+            [dragdrop]="true" [responsive]="true" filterBy="studentName" sourceFilterPlaceholder="Search by Name"
+            targetFilterPlaceholder="Search by Name" breakpoint="768px" [sourceStyle]="{ height: '48vh' }"
+            [targetStyle]="{ height: '48vh' }">
+            <ng-template let-student pTemplate="item">
+              <div class="d-flex flex-row p-1 align-items-center">
+                <img class="shadow-2 flex-shrink-0 border-round" src="data:image/jpeg; base64,{{ student?.picture }}"
+                  style="width: 30px;border: none;border-radius: 50%;" alt="{{student.studentName}}" />
+                <div class="d-flex flex-row gap-2">
+                  <span class="fw-bold py-2"><i class="fas fa-user p-1"></i>{{ student.studentName }}</span>
+                  <span class="fw-bold py-2"> <i class="fas fa-user p-1"></i>{{ student.fatherName }}</span>
+                </div>
+              </div>
+            </ng-template>
+          </p-pickList>
+        </div>
+        <div class="col text-center">
+          <button type="submit" class="btn btn-success" (click)="addStudentToClass()"><i class="fa-solid fa-plus"></i>
+            Add</button>
+        </div>
+      </div>
+    </ng-template>
+  </p-dialog>
 </section>
