@@ -27,11 +27,11 @@
             <p-columnFilter type="text" field="student.studentName" display="menu" class="ml-auto"></p-columnFilter>
           </div>
         </th>
-        <th pSortableColumn="student.rollNumber" style="width:10rem;">
+        <th pSortableColumn="rollNumber" style="width:10rem;">
           <div class="d-flex justify-content-between align-items-center">
             Roll Number
-            <p-sortIcon field="student.rollNumber"></p-sortIcon>
-            <p-columnFilter type="text" field="student.rollNumber" display="menu" class="ml-auto"></p-columnFilter>
+            <p-sortIcon field="rollNumber"></p-sortIcon>
+            <p-columnFilter type="text" field="rollNumber" display="menu" class="ml-auto"></p-columnFilter>
           </div>
         </th>
         <th pSortableColumn="student.fatherName" style="min-width: 10rem">
@@ -61,7 +61,7 @@
           {{studentClass.student.studentName}}
         </td>
         <td>
-          {{ studentClass.student.rollNumber}}
+          {{ studentClass.rollNumber}}
         </td>
         <td>{{studentClass.student.fatherName}}</td>
         <td>{{studentClass.student.bForm}}</td>

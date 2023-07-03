@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
 
   loginForm: FormGroup
   constructor(private router: Router, private formBuilder: FormBuilder,
-    private loginService: LoginService,private message:MessageService) { }
+    private loginService: LoginService, private message: MessageService) { }
   ngOnInit(): void {
 
     this.createForm()
@@ -36,17 +36,14 @@ export class LoginComponent implements OnInit {
 
     this.loginService.generateToken(login).subscribe({
       next: (data: any) => {
-
         this.loginService.setToken(data.token)
-
-
       },
       error: (err) => {
         console.error(err)
         this.message.add({
-          severity:'error',
-          summary:'Wrong Info',
-          detail:`${err.error}`
+          severity: 'error',
+          summary: 'Wrong Info',
+          detail: `${err.error}`
         })
       },
       complete: () => {
@@ -55,27 +52,22 @@ export class LoginComponent implements OnInit {
             next: (data: User) => {
               this.loginService.setUser(data)
             }
-            , error(err: any) {
+            , error:(err: any) =>{
 
             },
             complete: () => {
               this.redirection()
             },
           }
-
         )
       }
     })
   }
 
   private redirection(): void {
-
     const role = this.loginService.getAuthority()
-
     if (role == "ADMIN") {
-
-      this.router.navigate(['teacher'])
-
+      this.router.navigate(['admin'])
     } else if (role == "TEACHER") {
       this.router.navigate(['teacher'])
     }

@@ -8,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit{
 
   image:any
+  role:string = ''
   ngOnInit (): void {
       this.image = JSON.parse(localStorage.getItem('user'))['userPicture']
-
+      this.role = JSON.parse(localStorage.getItem('user'))['role']['authority']
   }
 
 

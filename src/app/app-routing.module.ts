@@ -8,6 +8,7 @@ import { LoginComponent } from './components/general/login/login.component';
 
 import { TeacherModule } from './modules/teacher/teacher.module';
 import { SharedModule } from './modules/shared/shared.module';
+import { AdminModule } from './modules/admin/admin.module';
 
 
 
@@ -24,6 +25,7 @@ const routes:Routes = [
 @NgModule({
   declarations: [],
   imports: [
+    AdminModule,
     SharedModule,
     TeacherModule,
     GeneralModule,

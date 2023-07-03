@@ -1,0 +1,348 @@
+<section id="teacher-list rounded">
+  <p-toast position="bottom-right"></p-toast>
+  <p-table #dt [value]="teachers" dataKey="teacherId" [rowHover]="true" [rows]="5" [showCurrentPageReport]="true"
+    [rowsPerPageOptions]="[5, 10, 25]" [tableStyle]="{ 'max-width': '50rem' }" [paginator]="true"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [filterDelay]="0"
+    [globalFilterFields]="[
+      'teacherId',
+      'teacherName',
+      'fatherName',
+      'cnic',
+      'address'
+    ]">
+    <ng-template pTemplate="caption">
+      <div class="table-header">
+        Teacher List
+        <span class="p-input-icon-left mx-3">
+          <input type="text" (input)="dt.filterGlobal($event.target['value'], 'contains')"
+            placeholder="Global Search" />
+        </span>
+
+        <button type="button" class="btn btn-add" (click)="addTeacher()">
+          <i class="fa-solid fa-plus px-2"></i>
+          New
+        </button>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th pSortableColumn="teacherId" style="width: 10rem">
+          <div class="d-flex justify-content-between align-items-center">
+            Id
+            <p-sortIcon field="teacherId"></p-sortIcon>
+            <p-columnFilter type="text" field="teacherId" display="menu" class="ml-auto"></p-columnFilter>
+          </div>
+        </th>
+        <th style="min-width: 10rem">Picture</th>
+        <th pSortableColumn="teacherName" style="min-width: 10rem">
+          <div class="d-flex justify-content-between align-items-center">
+            Name
+            <p-sortIcon field="teacherName"></p-sortIcon>
+            <p-columnFilter type="text" field="teacherName" display="menu" class="ml-auto"></p-columnFilter>
+          </div>
+        </th>
+        <th pSortableColumn="fatherName" style="min-width: 10rem">
+          <div class="d-flex justify-content-between align-items-center">
+            Father Name
+            <p-sortIcon field="fatherName"></p-sortIcon>
+            <p-columnFilter type="text" field="fatherName" display="menu" class="ml-auto"></p-columnFilter>
+          </div>
+        </th>
+        <th pSortableColumn="cnic" style="min-width: 10rem">
+          <div class="d-flex justify-content-between align-items-center">
+            CNIC
+            <p-sortIcon field="cnic"></p-sortIcon>
+            <p-columnFilter type="text" field="cnic" display="menu" class="ml-auto"></p-columnFilter>
+          </div>
+        </th>
+        <th pSortableColumn="qualification" style="min-width: 10rem">
+          <div class="d-flex justify-content-between align-items-center">
+            Qualification
+            <p-sortIcon field="qualification"></p-sortIcon>
+            <p-columnFilter type="text" field="qualification" display="menu" class="ml-auto"></p-columnFilter>
+          </div>
+        </th>
+        <th pSortableColumn="dateOfBirth" style="min-width: 10rem">
+          <div class="d-flex justify-content-between align-items-center">
+            Date of Birth
+            <p-sortIcon field="dateOfBirth"></p-sortIcon>
+            <p-columnFilter type="date" field="dateOfBirth" display="menu" class="ml-auto"></p-columnFilter>
+          </div>
+        </th>
+        <th pSortableColumn="contactNo" style="min-width: 10rem">
+          <div class="d-flex justify-content-between align-items-center">
+            Contact No.
+            <p-sortIcon field="contactNo"></p-sortIcon>
+            <p-columnFilter type="numeric" field="contactNo" display="menu" currency="USD"
+              class="ml-auto"></p-columnFilter>
+          </div>
+        </th>
+        <th pSortableColumn="address" style="min-width: 10rem">
+          <div class="d-flex justify-content-between align-items-center">
+            Address
+            <p-sortIcon field="address"></p-sortIcon>
+            <p-columnFilter type="text" field="address" display="menu" currency="USD" class="ml-auto"></p-columnFilter>
+          </div>
+        </th>
+        <th style="width: 5rem"></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-teacher>
+      <tr class="p-selectable-row">
+        <td>
+          {{ teacher.teacherId }}
+        </td>
+        <td>
+          <img src="data:image/jpeg; base64,{{ teacher?.picture }}" width="100" alt="teacher_picture" />
+        </td>
+        <td>
+          {{ teacher.teacherName }}
+        </td>
+        <td>
+          {{ teacher.fatherName }}
+        </td>
+        <td>
+          {{ teacher.cnic }}
+        </td>
+        <td>{{teacher.qualification}}</td>
+        <td>
+          {{ teacher.dateOfBirth }}
+        </td>
+        <td>
+          {{ teacher.contactNo }}
+        </td>
+        <td>
+          {{ teacher.address }}
+        </td>
+
+        <td>
+          <button type="button" class="btn btn-outline-success" (click)="updateTeacher(teacher)">
+            <i class="fa-solid fa-pen-to-square"></i> Edit
+          </button>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="8">No Teacher found.</td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+  <p-dialog [(visible)]="editDialog" header="Edit Teacher" [modal]="true" styleClass="dialog-style"
+    style="z-index: 9999999990">
+    <ng-template pTemplate="body">
+      <form #editForm="ngForm" (ngSubmit)="editSubmit()">
+        <div class="row">
+          <div class="col-12">
+            <label for="edit-image-input" class="edit-image-label my-2">
+              <input type="file" id="edit-image-input" class="edit-image-input" (change)="onChange($event)" />
+              <img class="profile-pic" *ngIf="placeholder == undefined"
+                src="data:image/jpeg; base64,{{ teacher?.picture }}" alt="profile picture" />
+              <img class="profile-pic" *ngIf="placeholder" [src]="placeholder" alt="profile picture" />
+            </label>
+          </div>
+          <div class="col-md-6">
+            <div class="d-flex flex-column gap-2">
+              <label htmlFor="teacherName">Teacher Name</label>
+              <input type="text" class="form-input" id="teacherName" name="teacherName" #teacherName="ngModel"
+                aria-describedby="teacherName-help" [(ngModel)]="teacher.teacherName" required="true" />
+            </div>
+            <ng-container *ngIf="teacherName.touched && teacherName.invalid && teacherName.value === ''">
+              <div class="alert alert-danger" role="alert">
+                Teacher Name is required.
+              </div>
+            </ng-container>
+          </div>
+          <div class="col-md-6">
+            <div class="d-flex flex-column gap-2">
+              <label htmlFor="fatherName">Father Name</label>
+              <input type="text" class="form-input" id="fatherName" name="fatherName" #fatherName="ngModel"
+                aria-describedby="FatherName-help" [(ngModel)]="teacher.fatherName" />
+            </div>
+            <ng-container *ngIf="
+                fatherName.touched && fatherName.invalid && fatherName.value ==''
+              ">
+              <div class="alert alert-danger" role="alert">
+                Father Name is required.
+              </div>
+            </ng-container>
+          </div>
+          <div class="col-md-6">
+            <div class="d-flex flex-column gap-2">
+              <label htmlFor="cnic">CNIC</label>
+              <input class="form-input" id="cnic" name="cnic" #cnic="ngModel" pattern="[0-9]{12}"
+                aria-describedby="cnic-help" [(ngModel)]="teacher.cnic" />
+            </div>
+            <ng-container *ngIf="cnic.touched && cnic.invalid">
+              <div class="alert alert-danger" role="alert">
+                B-Form/CNIC Name is required.
+              </div>
+            </ng-container>
+          </div>
+          <div class="col-md-6">
+            <div class="d-flex flex-column gap-2">
+              <label htmlFor="dateOfBirth">Date of Birth</label>
+              <input class="form-input" type="date" id="dateOfBirth" name="dateOfBirth" #dateOfBirth="ngModel"
+                aria-describedby="dateOfBirth-help" [(ngModel)]="teacher.dateOfBirth" />
+            </div>
+            <ng-container *ngIf="dateOfBirth.touched && dateOfBirth.invalid">
+              <div class="alert alert-danger" role="alert">
+                Date Of Birth is required.
+              </div>
+            </ng-container>
+          </div>
+          <div class="col-md-6">
+            <div class="d-flex flex-column gap-2">
+              <label htmlFor="contactNo">Contact No.</label>
+              <input class="form-input" type="tel" pattern="[0-9]{11}" id="contactNo" #contactNo="ngModel"
+                name="contactNo" aria-describedby="contactNo-help" [(ngModel)]="teacher.contactNo" />
+            </div>
+            <ng-container *ngIf="contactNo.touched && contactNo.invalid">
+              <div class="alert alert-danger" role="alert">
+                Contact Number is required.
+              </div>
+            </ng-container>
+          </div>
+          <div class="col-md-6">
+            <div class="d-flex flex-column gap-2">
+              <label htmlFor="address">Address</label>
+              <input class="form-input" type="text" id="address" name="address" #address="ngModel"
+                aria-describedby="address-help" [(ngModel)]="teacher.address" />
+            </div>
+            <ng-container *ngIf="address.touched && address.invalid">
+              <div class="alert alert-danger p-2" role="alert" styel="width:fit-content;">
+                Address is required.
+              </div>
+            </ng-container>
+          </div>
+        </div>
+
+        <button class="btn btn-success my-2" type="submit" (click)="editSubmit()">
+          <i class="fa-solid fa-pen-to-square"></i>
+          Update
+        </button>
+      </form>
+    </ng-template>
+  </p-dialog>
+
+  <p-dialog [(visible)]="addDialog" header="Add Teacher" [modal]="true" styleClass="dialog-style"
+    style="z-index: 9999999990">
+    <ng-template pTemplate="body">
+      <form [formGroup]="teacherForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="d-flex flex-column gap-2">
+              <label htmlFor="teacherName">Teacher Name</label>
+              <input type="text" class="form-input" id="teacherName" formControlName="teacherName"
+                placeholder="Abdul Rehman" />
+            </div>
+            <div class="alert alert-danger" *ngIf="
+              teacherForm.get('teacherName').invalid &&
+              teacherForm.get('teacherName').touched
+            ">
+              Teacher Name is required.
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="d-flex flex-column gap-2">
+              <label htmlFor="fatherName">Father Name</label>
+              <input type="text" class="form-input" id="fatherName" formControlName="fatherName"
+                placeholder="Muhammad Nadeem" />
+            </div>
+            <div class="alert alert-danger" *ngIf="
+              teacherForm.get('fatherName').invalid &&
+              teacherForm.get('fatherName').touched
+            ">
+              Father Name is required.
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="d-flex flex-column gap-2">
+              <label htmlFor="qualification">Qualification</label>
+              <input type="text" class="form-input" id="qualification" formControlName="qualification"
+                placeholder="Matric,Fsc,BS,MS,MPhill" />
+            </div>
+            <div class="alert alert-danger" *ngIf="
+              teacherForm.get('qualification').invalid &&
+              teacherForm.get('qualification').touched
+            ">
+              Qualificationis required.
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="d-flex flex-column gap-2">
+              <label htmlFor="cnic">CNIC</label>
+              <input type="text" class="form-input" id="cnic" formControlName="cnic" placeholder="xxxx-xxxxxxxxxx-x" />
+            </div>
+            <div class="alert alert-danger" *ngIf="
+              teacherForm.get('cnic').invalid &&
+              teacherForm.get('cnic').touched
+            ">
+              B-Form/CNIC Name is required.
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="d-flex flex-column gap-2">
+              <label htmlFor="dateOfBirth">Date of Birth</label>
+              <input type="date" class="form-input" id="dateOfBirth" formControlName="dateOfBirth" />
+            </div>
+            <div class="alert alert-danger" *ngIf="
+              teacherForm.get('dateOfBirth').invalid &&
+              teacherForm.get('dateOfBirth').touched
+            ">
+              Date Of Birth is required.
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="d-flex flex-column gap-2">
+              <label htmlFor="picture">Picture</label>
+              <input type="file" accept="image/**" class="form-input" id="picture" formControlName="picture"
+                (change)="onChange($event)" />
+            </div>
+            <div class="alert alert-danger" *ngIf="
+              teacherForm.get('picture').invalid &&
+              teacherForm.get('picture').touched
+            ">
+              Picture is required.
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="d-flex flex-column gap-2">
+              <label htmlFor="contactNo">Contact No.</label>
+              <input type="tel" patten="0-9{11}" class="form-input" id="contactNo" formControlName="contactNo"
+                placeholder="+92 33x xxxxxxx" />
+            </div>
+            <div class="alert alert-danger" *ngIf="
+              teacherForm.get('contactNo').invalid &&
+              teacherForm.get('contactNo').touched
+            ">
+              Contact No. is required.
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="d-flex flex-column gap-2">
+              <label htmlFor="address">Address</label>
+              <input type="text" class="form-input" id="address" formControlName="address"
+                placeholder="Mohallah Shah Jamal" />
+            </div>
+            <div class="alert alert-danger" *ngIf="
+              teacherForm.get('address').invalid &&
+              teacherForm.get('address').touched
+            ">
+              Address is required.
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-success my-2">Submit</button>
+      </form>
+
+    </ng-template>
+  </p-dialog>
+</section>

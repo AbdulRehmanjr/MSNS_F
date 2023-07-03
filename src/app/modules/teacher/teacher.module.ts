@@ -35,25 +35,13 @@ import { ClassDetailComponent } from 'src/app/components/teacher/class-detail/cl
 const routes:Routes = [
   {
     path:'teacher',component:TeacherComponent,children:[
-      {
-        path:'',component:DashboardComponent
-      },
-      {
-        path:'student-list',component:StudentListComponent
-      },
-      {
-        path:'class-list',component:ListClassComponent
-      },
-      {
-        path:'section-list',component:ListSectionComponent
-      }
-      ,
-      {
-        path:'class-wise-list',component:ClassWiseListComponent
-      },
-      {
-        path:'class-detail/:classId',component:ClassDetailComponent
-      }
+      {path:'dashboard',component:DashboardComponent},
+      {path:'student-list',component:StudentListComponent},
+      {path:'class-list',component:ListClassComponent},
+      {path:'section-list',component:ListSectionComponent},
+      {path:'class-wise-list',component:ClassWiseListComponent},
+      {path:'class-detail/:classId',component:ClassDetailComponent},
+      {path:'',redirectTo:'dashboard',pathMatch:'full'}
     ]
   }
 ]

@@ -34,14 +34,22 @@ export class ClassDetailComponent implements OnInit {
     this.addDialog = true
   }
 
+  /**
+   * The function fetches all students in a class using the class ID.
+   */
   fetchStudents() {
     this.scService.getAllStudentsByClassId(this.classId).subscribe({
       next: (response: StudentClass[]) => this.studentsClass = response,
-      error: (error: any) => { },
+      error: (_error: any) => { },
       complete: () => { }
     })
   }
 
+
+  /**
+   * The function "addStudentToClass" adds selected students to a class and displays success or error
+   * messages accordingly.
+   */
   addStudentToClass() {
 
     if (this.selectedStudents.length != 0) {
@@ -50,24 +58,31 @@ export class ClassDetailComponent implements OnInit {
         next: (response: any) => this.message.add({
           severity: 'success',
           summary: 'Student Added',
-          detail: `${response.body}`
+          detail: `${response}`
         }),
         error: (error: any) => this.message.add({
           severity: 'warn',
           summary: 'Error',
           detail: `${error.error}`
         }),
-        complete: () => { }
+        complete: () => {
+          this.selectedStudents = []
+        }
       })
     }
   }
   /**
    * @param name
    */
+  /**
+   * The function searches for students by name and assigns the response to the "students" variable.
+   * @param {string} name - The name parameter is a string that represents the name of the student you
+   * want to search for.
+   */
   searchStudent(name: string) {
     this.studentService.getAllStudentsByStudentName(name).subscribe({
       next: (response: Student[]) => this.students = response,
-      error: (error: any) => { },
+      error: (_error: any) => { },
       complete: () => {
 
       }

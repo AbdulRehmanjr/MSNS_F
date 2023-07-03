@@ -1,0 +1,178 @@
+<section id="teacher-list rounded">
+  <p-toast position="bottom-right"></p-toast>
+  <div class="d-flex justify-content-center">
+    <p-toast position="bottom-right" ></p-toast>
+    <p-table
+    #dt
+    [value]="fees"
+    dataKey="feeId"
+    [rowHover]="true"
+    [rows]="5"
+    [showCurrentPageReport]="true"
+    [rowsPerPageOptions]="[5, 10, 25]"
+    [paginator]="true"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} Fees"
+    [filterDelay]="0"
+    [globalFilterFields]="[
+      'feeId',
+      'amount',
+      'tag'
+    ]"
+    >
+    <ng-template pTemplate="caption">
+      <div class="table-header">
+        Fee Structure
+        <span class="p-input-icon-left mx-3">
+          <input
+            type="text"
+            (input)="dt.filterGlobal($event.target['value'], 'contains')"
+            placeholder="Global Search"
+          />
+        </span>
+
+        <button type="button" class="btn btn-add" (click)="addFee()">
+          <i class="fa-solid fa-plus px-2"></i>
+          New
+        </button>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th pSortableColumn="feeId" >
+          <div class="d-flex justify-content-between align-items-center">
+            Id
+            <p-sortIcon field="feeId"></p-sortIcon>
+            <p-columnFilter
+              type="text"
+              field="feeId"
+              display="menu"
+              class="ml-auto"
+            ></p-columnFilter>
+          </div>
+        </th>
+        <th pSortableColumn="amount" >
+          <div class="d-flex justify-content-between align-items-center">
+            Amount
+            <p-sortIcon field="amount"></p-sortIcon>
+            <p-columnFilter
+              type="number"
+              field="amount"
+              display="menu"
+              class="ml-auto"
+            ></p-columnFilter>
+          </div>
+        </th>
+        <th pSortableColumn="tag" >
+          <div class="d-flex justify-content-between align-items-center">
+            Tag
+            <p-sortIcon field="tag"></p-sortIcon>
+            <p-columnFilter
+              type="text"
+              field="tag"
+              display="menu"
+              class="ml-auto"
+            ></p-columnFilter>
+          </div>
+        </th>
+
+        <th ></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-fee>
+      <tr class="p-selectable-row">
+        <td>
+          {{ fee.feeId }}
+        </td>
+        <td>
+          {{ fee.amount }}
+        </td>
+        <td>
+          {{ fee.tag }}
+        </td>
+        <td>
+          <button
+            type="button"
+            class="btn btn-outline-success"
+            (click)="updateFee(fee)"
+          >
+          <i class="fa-solid fa-pen-to-square"></i> Edit
+          </button>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="8">No Fee Found.</td>
+      </tr>
+    </ng-template>
+    </p-table>
+  </div>
+
+
+  <p-dialog [(visible)]="editDialog" header="Edit Fee" [modal]="true" styleClass="dialog-style"
+    style="z-index: 9999999990">
+    <ng-template pTemplate="body">
+      <form #editForm="ngForm" (ngSubmit)="editSubmit()">
+
+            <div class="d-flex flex-column gap-2">
+              <label htmlFor="amount">Amount</label>
+              <input type="number" class="form-input" id="amount" name="amount" #amount="ngModel"
+                aria-describedby="amount-help" [(ngModel)]="fee.amount" required="true" />
+            </div>
+            <ng-container *ngIf="amount.touched && amount.invalid && amount.value === ''">
+              <div class="alert alert-danger" role="alert">
+                Amount is required.
+              </div>
+            </ng-container>
+            <div class="d-flex flex-column gap-2">
+              <label htmlFor="tag">Teacher Name</label>
+              <input type="text" class="form-input" id="tag" name="tag" #tag="ngModel"
+                aria-describedby="tag-help" [(ngModel)]="fee.tag" required="true" />
+            </div>
+            <ng-container *ngIf="tag.touched && tag.invalid && tag.value === ''">
+              <div class="alert alert-danger" role="alert">
+                Teacher Name is required.
+              </div>
+            </ng-container>
+        <button class="btn btn-success my-2" type="submit" (click)="editSubmit()">
+          <i class="fa-solid fa-pen-to-square"></i>
+          Update
+        </button>
+      </form>
+    </ng-template>
+  </p-dialog>
+
+  <p-dialog [(visible)]="addDialog" header="Add Teacher" [modal]="true" styleClass="dialog-style"
+    style="z-index: 9999999990">
+    <ng-template pTemplate="body">
+      <form [formGroup]="feeForm" (ngSubmit)="onSubmit()">
+
+        <div class="d-flex flex-column gap-2">
+          <label htmlFor="amount">Amount</label>
+          <input type="number" class="form-input" id="amount" formControlName="amount"
+            placeholder="1000" />
+        </div>
+        <div class="alert alert-danger" *ngIf="
+          feeForm.get('amount').invalid &&
+          feeForm.get('amount').touched
+        ">
+          Amount is required.
+        </div>
+        <div class="d-flex flex-column gap-2">
+          <label htmlFor="tag">Tag</label>
+          <input type="text" class="form-input" id="tag" formControlName="tag"
+            placeholder="Primary" />
+        </div>
+        <div class="alert alert-danger" *ngIf="
+          feeForm.get('tag').invalid &&
+          feeForm.get('tag').touched
+        ">
+          Tag is required.
+        </div>
+
+        <button type="submit" class="btn btn-success my-2">Submit</button>
+      </form>
+
+    </ng-template>
+  </p-dialog>
+</section>

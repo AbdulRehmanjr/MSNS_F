@@ -5,5 +5,7 @@ export const environment = {
   signup:'user',
   section:'section',
   student:'student',
-  studentClass:'student-class'
+  studentClass:'student-class',
+  teacher:'teacher',
+  fee:'fee'
 }
