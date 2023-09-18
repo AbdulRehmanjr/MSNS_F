@@ -19,9 +19,10 @@ import { SidebarComponent } from '../../components/admin/sidebar/sidebar.compone
 import { TeachersListComponent } from '../../components/admin/teachers-list/teachers-list.component';
 import { FeeStructureComponent } from '../../components/admin/fee-structure/fee-structure.component';
 
+const newLocal = 'admin';
 export const routes: Routes = [
   {
-    path:'admin',component:AdminComponent,children:[
+    path:newLocal,component:AdminComponent,children:[
       { path:'dashboard',component:DashboardComponent},
       {path:'teacher-list',component:TeachersListComponent},
       {path:'fee-structure',component:FeeStructureComponent},
