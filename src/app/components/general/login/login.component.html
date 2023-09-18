@@ -1,14 +1,13 @@
-<section class="container mt-4">
-  <p-toast position="bottom-right"></p-toast>
-  <div class="card" style="border-radius: 1rem">
-    <div class="row">
-      <div class="col-md-6 d-none d-md-block">
-        <img src="assets/logo/login_logo.png" alt="login form" />
-      </div>
-      <div class="col-md-5 m-auto">
-        <h1 class="heading">MSNS</h1>
+<section class="grid grid-cols-2 mt-4">
+  <div class="col-span-2">
+    <p-toast position="bottom-right"></p-toast>
+  </div>
+  <div class="col-span-1 m-4 p-4">
+    <img class="w-full h-[550px] rounded-lg " src="assets/logo/login_logo.png" alt="login form" />
+  </div>
+  <div class="col-span-1">
+    <h1 class="text-gray-900 font-bold text-3xl">MSNS</h1>
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-          <!-- Email input -->
           <div class="form-outline mb-4">
             <input
               type="email"
@@ -32,10 +31,44 @@
           <button type="submit" class="btn btn-success btn-block mb-4">
             Sign in
           </button>
+        </form>
+  </div>
+</section>
 
-
+<!--
+    <div class="card" style="border-radius: 1rem">
+    <div class="row">
+      <div class="col-md-6 d-none d-md-block">
+        <img src="assets/logo/login_logo.png" alt="login form" />
+      </div>
+      <div class="col-md-5 m-auto">
+        <h1 class="heading">MSNS</h1>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <div class="form-outline mb-4">
+            <input
+              type="email"
+              id="form2Example1"
+              formControlName="email"
+              class="form-control"
+              placeholder="Enter your email"
+            />
+            <label class="form-label" for="form2Example1">Email address</label>
+          </div>
+          <div class="form-outline mb-4">
+            <p-password [toggleMask]="true" formControlName="password"></p-password>
+            <br/>
+            <label class="form-label" for="form2Example2">Password</label>
+          </div>
+          <div class="row mb-4">
+            <div class="col">
+              <span>Don't Remember the Password? <a href="#!">Forgot password</a></span>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-success btn-block mb-4">
+            Sign in
+          </button>
         </form>
       </div>
     </div>
   </div>
-</section>
+ -->
