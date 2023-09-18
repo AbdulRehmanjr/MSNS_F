@@ -1,2 +1,0 @@
-<td-search-box placeholder="Search" (search)="onSearch(event)" (clear)="onClear()">
-</td-search-box>
