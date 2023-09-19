@@ -1,43 +1,28 @@
-<div class="d-flex flex-column flex-shrink-0 p-3 bg-light height sticky">
-  <a href="/!" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-black text-decoration-none">
-    <img src="assets/logo/header_logo.png" width="40" height="32" alt="msns_logo">
+<div class="flex flex-col bg-slate-400 sticky top-0 rounded-lg mx-1">
+  <a href="/!" class="flex align-items-center text-black p-4 ">
+    <img class="rounded-md" src="assets/logo/header_logo.png" width="40" height="32" alt="msns_logo">
 
-    <span class="fs-4 fw-bold px-2">MSNS</span>
+    <span class="text-2xl font-bold font-serif px-2">MSNS</span>
   </a>
 
-<hr>
-<ul class="nav nav-pills flex-column mb-auto">
-  <li>
-    <a routerLink="/admin/dashboard" routerLinkActive="active" class="nav-link link ">
+  <hr>
+  <ul class="flex flex-col p-4">
+    <li routerLink="/admin/dashboard" routerLinkActive="active"
+      class="p-2 text-black font-serif bg-white rounded-lg m-1 nav-link link cursor-pointer">
       <i class="fa-solid fa-cubes"></i>
       Dashboard
-    </a>
-  </li>
-  <li>
-    <a routerLink="/admin/teacher-list" routerLinkActive="active" class="nav-link link ">
+    </li>
+    <li routerLink="/admin/teacher-list" routerLinkActive="active"
+      class="p-2 text-black font-serif bg-white rounded-lg nav-link link m-1 cursor-pointer">
       <i class="fa-solid fa-person-chalkboard"></i>
       Teachers List
-    </a>
-  </li>
-  <li>
-    <a routerLink="/admin/fee-structure" routerLinkActive="active" class="nav-link link ">
+    </li>
+    <li routerLink="/admin/fee-structure" routerLinkActive="active"
+      class="p-2 text-black font-serif bg-white rounded-lg nav-link link m-1 cursor-pointer">
       <i class="fa-solid fa-rupee-sign"></i>
       Fee Structure
-    </a>
-  </li>
-</ul>
-<hr>
-<div class="dropdown">
-  <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
-    <img src="data:image/jpeg; base64,{{image}}" alt="mdo" width="32" height="32" class="rounded-circle me-2">
-    <strong>mdo</strong>
-  </a>
-  <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
-    <li><a class="dropdown-item" href="#">New project...</a></li>
-    <li><a class="dropdown-item" href="#">Settings</a></li>
-    <li><a class="dropdown-item" href="#">Profile</a></li>
-    <li><hr class="dropdown-divider"></li>
-    <li><a class="dropdown-item" href="#">Sign out</a></li>
+    </li>
   </ul>
-</div>
+  <hr>
+
 </div>
