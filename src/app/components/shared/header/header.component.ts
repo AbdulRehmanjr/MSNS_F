@@ -10,8 +10,13 @@ export class HeaderComponent implements OnInit{
   image:any
   role:string = ''
   ngOnInit (): void {
-      this.image = JSON.parse(localStorage.getItem('user'))['userPicture']
-      this.role = JSON.parse(localStorage.getItem('user'))['role']['authority']
+    try {
+      this.image = JSON.parse(localStorage.getItem('user'))['userPicture'] ||undefined
+      this.role = JSON.parse(localStorage.getItem('user'))['role']['authority'] || undefined
+    } catch (error) {
+      console.error(error)
+    }
+
   }
 
 

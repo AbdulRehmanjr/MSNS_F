@@ -1,44 +1,31 @@
-<!-- <section class="dashboard">
-  <div class="row mx-3">
-    <div class="col-md-4 my-2">
-      <div
-        class="card card-cover h-100 overflow-hidden text-white rounded-5 shadow-lg"
-      >
-        <div class="text-center h-100 p-5 pb-3 text-white text-shadow-1">
-
-          <img src="assets/admin_icons/teacher.png" alt="teacher icon"  style="border:none; border-radius: 50%;">
-          <h2 class="mt-1 display-6 lh-1"> Teachers</h2>
-          <button class="btn btn-success" routerLink="/admin/teacher-list"> View</button>
-        </div>
-      </div>
+<section class="grid grid-cols-3 gap-3 mx-1">
+  <div class="col-span-1 grid grid-cols-3 bg-green-600 rounded-lg h-[100px] shadow-lg shadow-[#65ba76] cursor-pointer"
+    routerLink="/admin/teacher-list">
+    <div class="col-span-2  text-white  font-bold font-serif p-4">
+      <p class="text-4xl">Teacher</p>
     </div>
-    <div class="col-md-4 my-2">
-      <div
-        class="card card-cover h-100 overflow-hidden text-white rounded-5 shadow-lg"
-      >
-        <div class="text-center h-100 p-5 pb-3 text-white text-shadow-1">
-          <img src="assets/admin_icons/money.png" alt="money icon"  style="border:none; border-radius: 50%;">
-          <h2 class="mt-1 display-6 lh-1"> Fee</h2>
-          <button class="btn btn-success" routerLink="/admin/fee-structure"> View</button>
-        </div>
-      </div>
+    <div class="col-span-1 text-white text-4xl p-6  drop-shadow-xl">
+      <i class="fa-solid fa-user"></i>
     </div>
   </div>
-</section> -->
-<section class="grid grid-cols-3 gap-3">
-  <div class="col-span-1">
-    <div
-      class="text-center bg-white rounded-lg h-fit p-3 text-green-500 text-4xl font-bold font-serif shadow-md shadow-black">
-      <img class="mx-[107px] justify-center border-none " src="assets/admin_icons/teacher.png" alt="teacher icon">
-      <h2 class="mt-1 display-6 lh-1"> Teachers</h2>
+  <div class="col-span-1 grid grid-cols-3 bg-green-600 rounded-lg h-[100px] shadow-lg shadow-[#65ba76] cursor-pointer"
+    routerLink="/admin/fee-structure">
+    <div class="col-span-2  text-white  font-bold font-serif p-4">
+      <p class="text-4xl">Fee</p>
+    </div>
+    <div class="col-span-1 text-white text-4xl p-6  drop-shadow-xl">
+      <i class="fa-solid fa-wallet"></i>
     </div>
   </div>
-  <div class="col-span-1">
-    <div
-      class="text-center bg-white rounded-lg h-fit  p-3 text-green-500 text-4xl font-bold font-serif shadow-md shadow-black">
-      <img class="mx-[107px] justify-center border-none " src="assets/admin_icons/money.png" alt="fee icon">
-      <h2 class="mt-1 display-6 lh-1"> Fee</h2>
-      <button class="bg-green-600 p-4 m-4 text-white text-sm font-bold font-serif rounded-lg" routerLink="/admin/fee-structure"> View</button>
+  <div class="col-span-1 grid grid-cols-3 bg-green-600 rounded-lg h-[100px] shadow-lg shadow-[#65ba76] cursor-pointer"
+    routerLink="/teacher/dashboard">
+    <div class="col-span-2  text-white  font-bold font-serif p-4">
+      <p class="text-4xl">Teacher</p>
+      <p class="text-3xl"> Dashboard</p>
+    </div>
+    <div class="col-span-1 text-white text-4xl p-6  drop-shadow-xl">
+      <i class="fa-solid fa-desktop"></i>
     </div>
   </div>
 </section>
+
