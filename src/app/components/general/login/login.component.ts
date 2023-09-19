@@ -64,6 +64,9 @@ export class LoginComponent implements OnInit {
     })
   }
 
+  onTesting(){
+    this.router.navigate(['admin'])
+  }
   private redirection(): void {
     const role = this.loginService.getAuthority()
     if (role == "ADMIN") {
