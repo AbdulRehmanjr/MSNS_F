@@ -9,9 +9,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { PasswordModule } from 'primeng/password';
 import { MessagesModule } from 'primeng/messages';
 
-
-
-
 import { SignupComponent } from '../../components/general/signup/signup.component';
 import { SharedModule } from '../shared/shared.module';
 import { ToastModule } from 'primeng/toast';

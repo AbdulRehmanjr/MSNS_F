@@ -5,17 +5,21 @@
 }
 img{
 width:100%;
-height:550px;
+height:350px;
 border: none;
 border-radius: 10px;
+padding-top: 30;
 }
 
 
 .heading{
-  font-weight: 700;
-  font-size: 40px;
-  color:#2E531A;
+  font-weight: 900;
+  font-size: 48px;
+  color:#203d10;
 }
+
+
+
 label,span{
   font-weight: 700;
   color: #000;
