@@ -13,6 +13,12 @@ import { LoginService } from 'src/app/services/login.service';
 })
 export class LoginComponent implements OnInit {
 
+  passwordVisible = false;
+
+  togglePasswordVisibility(passwordInput: HTMLInputElement): void {
+    this.passwordVisible = !this.passwordVisible;
+    passwordInput.type = this.passwordVisible ? 'text' : 'password';
+  }
 
   loginForm: FormGroup
   constructor(private router: Router, private formBuilder: FormBuilder,
