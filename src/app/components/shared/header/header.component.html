@@ -1,18 +1,23 @@
-<header class="p-3 mb-3 border-b">
-  <div class="container mx-auto">
-    <nav class="flex flex-wrap items-center justify-between ">
-      <a href="#!" class="flex items-center mb-2 mb-lg-0 text-dark text-decoration-none">
-        <img src="assets/logo/logo.png" alt="logo" width="60">
-      </a>
+<nav
+  class="relative flex w-full flex-wrap items-center justify-between bg-g-ag1 py-2 text-white shadow-lg hover:text-yellow10 focus:text-gray-950 dark:bg-g-ag5 lg:py-2"
+>
+  <div class="flex w-full flex-wrap items-center justify-between px-2">
+    <!-- Left elements -->
+    <div class="flex items-center">
+      <div class="relative w-12 h-12 ml-4">
+        <img
+          src="assets/logo/logo.png"
+          alt="MSNS-LMS"
+          class="transition-transform transform hover:scale-125">
+      </div>
+      <div class="ml-16 text-green-950 font-serif text-4xl transition-transform transform hover:scale-95">M.S.N.S | LMS</div>
+    </div>
+<!--------------------------------------------- -->
 
-      <ul class="flex flex-row justify-evenly">
-        <!-- You can add the ngIf directive dynamically with Angular, Tailwind handles the styling -->
-        <li ><a href="#!" class="nav-link px-2 link" routerLink="/admin">Admin Dashboard</a></li>
-        <li ><a href="#!" class="nav-link px-2 link" routerLink="/teacher">Teacher Dashboard</a></li>
-        <li><a href="#!" class="nav-link px-2 link">Customers</a></li>
-        <li><a href="#!" class="nav-link px-2 link">Products</a></li>
-      </ul>
-      <img src="assets/logo/logo.png" alt="logo" width="60">
-    </nav>
+
+
+    <!-- Right elements -->
+
+<!--------------------------------------------- -->
   </div>
-</header>
+</nav>
