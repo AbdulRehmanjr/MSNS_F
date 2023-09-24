@@ -13,7 +13,7 @@ import { SignupComponent } from '../../components/general/signup/signup.componen
 import { SharedModule } from '../shared/shared.module';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
-
+import { PasswordToggleDirective } from 'src/app/directives/password-toggle.directive';
 const routes: Routes  = [
 
 ]
@@ -23,7 +23,8 @@ const routes: Routes  = [
 
     GeneralComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    PasswordToggleDirective,
   ],
   imports: [
     ToastModule,

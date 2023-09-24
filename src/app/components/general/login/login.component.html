@@ -1,16 +1,69 @@
-<section
-  class="min-h-screen bg-[url('assets\jpg\Schoolview.jpg')] bg-no-repeat bg-cover bg-center brightness-50">
-</section>
-<div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-[10000] bg-white bg-opacity-30 backdrop-blur-md p-5">
-  <h1 class="text-7xl text-light-green p-10">MSNS</h1>
-  <h1 class="text-black bg-white">height</h1>
-  <form class="flex flex-col p-5 h-">
-    <div class="form-group m-[10px] p-[10px]">
-      <input type="text" name="" id="">
+<section class="min-h-screen bg-[url('assets\jpg\Schoolview.jpg')] bg-no-repeat bg-cover bg-center brightness-50"></section>
+<div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-[10000] bg-green-200 bg-opacity-30 backdrop-blur-md p-10">
+  <div class="flex flex-col items-center my-10">
+    <img src="\assets\logo\logo.png" alt="Logo" class="w-38 h-38">
+    <h1 class="text-5xl text-green-900 font-serif mt-2">MSNS-LMS</h1>
+  </div>
+  <form class="flex flex-col items-center space-y-4">
+    <div class="relative">
+      <input type="email" name="email" id="email" placeholder="Email" class="border rounded-md px-4 py-2 w-80">
     </div>
-    <div class="form-group m-2 p-2">
-      <input type="text" name="" id="">
+
+    <div class="relative">
+      <input
+        type="password"
+        name="password"
+        id="password"
+        placeholder="Password"
+        class="border rounded-md px-4 py-2 w-80"
+        appPasswordToggle
+        #passwordInput>
+        <span class="absolute inset-y-0 right-0 flex items-center pr-3" (click)="togglePasswordVisibility(passwordInput)">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 cursor-pointer" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <!-- SVG path for eye icon when password is visible -->
+            <ng-container *ngIf="passwordVisible; else passwordHidden">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+              />
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M17.293 14.293A12.937 12.937 0 0019 12c-2.347-3.663-5.49-6-7-6-1.51 0-4.653 2.337-7 6a12.937 12.937 0 001.707 2.293"
+              />
+            </ng-container>
+            <!-- SVG path for eye-slash icon when password is hidden -->
+            <ng-template #passwordHidden>
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+              />
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M17.293 14.293A12.937 12.937 0 0019 12c-2.347-3.663-5.49-6-7-6-1.51 0-4.653 2.337-7 6a12.937 12.937 0 001.707 2.293M12 7a5 5 0 100 10 5 5 0 000-10z"
+              />
+            </ng-template>
+          </svg>
+        </span>
+
     </div>
-    <button type="submit" class="text-black bg-white px-5" routerLink="/admin">adsfasd</button>
+
+    <button class="text-white font-medium bg-green-800 hover:bg-blue-700 px-5 py-2 rounded-md w-full"routerLink="/admin">LOGIN</button>
+    <div class="flex justify-between items-center">
+      <div class="text-md">
+        <a href="#" class="text-white hover:text-green-400">Forgot Password</a> |
+        <a href="#" class="text-white hover:text-green-400">Reset Password</a>
+      </div>
+    </div>
   </form>
+  <div>
+    <button class="text-white font-medium bg-green-800 hover:bg-blue-700 px-5 py-2 rounded-md w-full mt-10">ENROLL NOW</button>
+  </div>
 </div>
