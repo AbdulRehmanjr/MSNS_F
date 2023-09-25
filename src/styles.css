@@ -19,9 +19,10 @@ body {
 .margin-top{
   margin-top: 7%;
 }
-.p-datatable{
-  box-shadow: 0 10px 10px rgba(0, 0, 0, 1);
-}.p-datatable .p-datatable-header{
+/* .p-datatable{
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 1);
+} */
+.p-datatable .p-datatable-header{
   background: #007437;
   color: #fff;
 }

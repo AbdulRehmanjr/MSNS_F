@@ -1,8 +1,9 @@
-<section id="teacher-list rounded">
+<section id="teacher-list" class=" p-2">
   <p-toast position="bottom-right"></p-toast>
-  <div class="d-flex justify-content-center">
+  <div class="flex justify-center">
     <p-toast position="bottom-right" ></p-toast>
     <p-table
+    class=" rounded-xl shadow-md shadow-white"
     #dt
     [value]="fees"
     dataKey="feeId"
@@ -30,8 +31,8 @@
           />
         </span>
 
-        <button type="button" class="btn btn-add" (click)="addFee()">
-          <i class="fa-solid fa-plus px-2"></i>
+        <button type="button" class="bg-green-400 py-2 px-4 rounded-lg shadow-md shadow-white" (click)="addFee()">
+          <i class="fa-solid fa-plus"></i>
           New
         </button>
       </div>
@@ -39,7 +40,7 @@
     <ng-template pTemplate="header">
       <tr>
         <th pSortableColumn="feeId" >
-          <div class="d-flex justify-content-between align-items-center">
+          <div class="flex justify-between items-center">
             Id
             <p-sortIcon field="feeId"></p-sortIcon>
             <p-columnFilter
@@ -51,7 +52,7 @@
           </div>
         </th>
         <th pSortableColumn="amount" >
-          <div class="d-flex justify-content-between align-items-center">
+          <div class="flex justify-between items-center">
             Amount
             <p-sortIcon field="amount"></p-sortIcon>
             <p-columnFilter
@@ -63,7 +64,7 @@
           </div>
         </th>
         <th pSortableColumn="tag" >
-          <div class="d-flex justify-content-between align-items-center">
+          <div class="flex justify-between items-center">
             Tag
             <p-sortIcon field="tag"></p-sortIcon>
             <p-columnFilter
@@ -109,13 +110,12 @@
   </div>
 
 
-  <p-dialog [(visible)]="editDialog" header="Edit Fee" [modal]="true" styleClass="dialog-style"
-    style="z-index: 9999999990">
+  <p-dialog [(visible)]="editDialog" header="Edit Fee" [modal]="true" styleClass="dialog-style">
     <ng-template pTemplate="body">
       <form #editForm="ngForm" (ngSubmit)="editSubmit()">
 
-            <div class="d-flex flex-column gap-2">
-              <label htmlFor="amount">Amount</label>
+            <div class="flex flex-col gap-2">
+              <label htmlFor="amount" class="text-xl text-black">Amount</label>
               <input type="number" class="form-input" id="amount" name="amount" #amount="ngModel"
                 aria-describedby="amount-help" [(ngModel)]="fee.amount" required="true" />
             </div>
@@ -124,8 +124,8 @@
                 Amount is required.
               </div>
             </ng-container>
-            <div class="d-flex flex-column gap-2">
-              <label htmlFor="tag">Teacher Name</label>
+            <div class="flex flex-col gap-2">
+              <label htmlFor="tag" class="text-xl text-black">Teacher Name</label>
               <input type="text" class="form-input" id="tag" name="tag" #tag="ngModel"
                 aria-describedby="tag-help" [(ngModel)]="fee.tag" required="true" />
             </div>
@@ -142,35 +142,35 @@
     </ng-template>
   </p-dialog>
 
-  <p-dialog [(visible)]="addDialog" header="Add Teacher" [modal]="true" styleClass="dialog-style"
-    style="z-index: 9999999990">
+  <p-dialog [(visible)]="addDialog" header="Add Fee" [modal]="true" styleClass="dialog-style"
+>
     <ng-template pTemplate="body">
       <form [formGroup]="feeForm" (ngSubmit)="onSubmit()">
 
-        <div class="d-flex flex-column gap-2">
-          <label htmlFor="amount">Amount</label>
+        <div class="flex flex-col gap-2">
+          <label htmlFor="amount" class="text-black text-xl">Amount</label>
           <input type="number" class="form-input" id="amount" formControlName="amount"
             placeholder="1000" />
         </div>
-        <div class="alert alert-danger" *ngIf="
+        <div class="text-red-600" *ngIf="
           feeForm.get('amount').invalid &&
           feeForm.get('amount').touched
         ">
           Amount is required.
         </div>
-        <div class="d-flex flex-column gap-2">
-          <label htmlFor="tag">Tag</label>
+        <div class="flex flex-col gap-2">
+          <label htmlFor="tag" class="text-black text-xl">Tag</label>
           <input type="text" class="form-input" id="tag" formControlName="tag"
             placeholder="Primary" />
         </div>
-        <div class="alert alert-danger" *ngIf="
+        <div class="text-red-600" *ngIf="
           feeForm.get('tag').invalid &&
           feeForm.get('tag').touched
         ">
           Tag is required.
         </div>
 
-        <button type="submit" class="btn btn-success my-2">Submit</button>
+        <button type="submit" class="bg-green-700 text-white font-extrabold font-serif rounded-lg shadow-md shadow-green-600 hover:border-2 hover:border-green-700 hover:bg-white hover:text-green-700 m-4 p-2 ">Submit</button>
       </form>
 
     </ng-template>
