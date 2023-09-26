@@ -4,7 +4,7 @@
     <img src="\assets\logo\logo.png" alt="Logo" class="h-fit w-fit">
     <h1 class="text-5xl text-green-900 font-serif mt-5 transform transition-transform hover:text-yellow10 hover:scale-110">MSNS-LMS</h1>
   </div>
-  <form class="flex flex-col items-center space-y-4 h-fit">
+  <form class="flex flex-col items-center space-y-4">
     <div class="relative">
       <input type="email" name="email" id="email" placeholder="Email" class="border rounded-md px-4 py-2 w-80">
     </div>
@@ -16,7 +16,6 @@
         id="password"
         placeholder="Password"
         class="border rounded-md px-4 py-2 w-80"
-        appPasswordToggle
         #passwordInput>
         <span class="absolute inset-y-0 right-0 flex items-center pr-3" (click)="togglePasswordVisibility(passwordInput)">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 cursor-pointer" fill="none" viewBox="0 0 24 24" stroke="currentColor">
