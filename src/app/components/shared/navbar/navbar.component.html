@@ -1,23 +1,49 @@
-<nav
-
-  class="sticky top-0 flex w-full flex-wrap items-center justify-between bg-g-ag1 py-2 text-white shadow-lg hover:text-yellow10 focus:text-gray-950 dark:bg-g-ag5 lg:py-2 z-[1101]"
-
-  <div class="relative flex w-full flex-wrap items-center justify-between px-4">
-    <!-- Left elements -->
-    <div class="flex items-center">
-      <div class="relative w-16 h-16 m-4">
-        <img
-          src="assets/logo/logo-white.png"
-          alt="MSNS-LMS"
-          class="transition-transform transform hover:scale-125 hover:yellow10">
+<nav class="bg-gradient-to-r from-g-ag5 via-bg-grn4 to-grn-p-one p-2 sticky top-0 z-50">
+  <div class="container mx-auto flex justify-between items-center">
+    <!-- Logo and Site Title (Centered and Clickable) -->
+    <a href="#" class="flex items-center relative logo-container">
+      <div class="flex items-center">
+        <img src="assets/logo/off_logo.png" alt="MSNS" class="h-12 w-12 mr-10 logo-image">
+        <h1 class="text-stroke text-grn-p-one text-3xl font-serif logo-text">MSNS | LMS</h1>
       </div>
-      <div class="m-5 items-center text-white shadow-lg hover:text-yellow10 font-serif text-4xl transition-transform transform hover:scale-105">| M.S.N.S | LMS |</div>
+    </a>
+
+
+    <!-- Desktop Menu -->
+    <div class="hidden md:flex space-x-10 text-white text-xl font-semibold font-sans">
+      <a href="#" class="menu-link">Dashboard</a>
+      <a href="#" class="menu-link">Alumni</a>
+      <a href="#" class="menu-link">Students</a>
+      <a href="#" class="menu-link">About</a>
     </div>
-<!--------------------------------------------- -->
-                <!-- Right elements -->
 
 
+    <!-- Mobile Menu Button (Hidden on Desktop) -->
+    <div class="md:hidden">
+      <button id="mobile-menu-toggle" class="text-white">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
 
-<!--------------------------------------------- -->
+  <!-- Mobile Menu (Hidden by default) -->
+  <div id="mobile-menu" class="hidden md:hidden mt-4">
+    <a href="#" class="block text-white hover:text-indigo-200 py-2">Home</a>
+    <a href="#" class="block text-white hover:text-indigo-200 py-2">Services</a>
+    <a href="#" class="block text-white hover:text-indigo-200 py-2">About Us</a>
+    <a href="#" class="block text-white hover:text-indigo-200 py-2">Contact</a>
   </div>
 </nav>
+
+
+<script>
+  // Toggle mobile menu
+  const mobileMenuToggle = document.getElementById("mobile-menu-toggle");
+  const mobileMenu = document.getElementById("mobile-menu");
+
+  mobileMenuToggle.addEventListener("click", () => {
+    mobileMenu.classList.toggle("hidden");
+  });
+</script>
