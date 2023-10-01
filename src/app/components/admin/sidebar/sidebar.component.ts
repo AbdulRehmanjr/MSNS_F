@@ -3,11 +3,8 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'admin-sidebar',
   templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.css']
+  styleUrls: ['./sidebar.component.css'] // Make sure to adjust this path if your CSS file is in a different location
 })
 export class SidebarComponent {
-  image: any
-  ngOnInit(): void {
-    this.image = JSON.parse(localStorage.getItem('user'))['userPicture']
-  }
+  constructor() { }
 }
