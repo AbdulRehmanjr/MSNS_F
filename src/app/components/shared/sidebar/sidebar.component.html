@@ -1,0 +1,61 @@
+<div class="sidebar bg-grn-p-one text-white min-h-full static inset-y-0 left-0 w-60 px-4 py-6 shadow-lg transition-all duration-200 ease-in-out">
+
+  <div class="flex items-center justify-between mb-6">
+    <div class="flex items-center space-x-4">
+      <img src="assets/png/user-profile.png" alt="" class="w-12 h-12 rounded-full bg-gray-500">
+      <div>
+        <h2 class="text-lg font-semibold">Admin</h2>
+        <span class="text-xs hover:underline">View profile</span>
+      </div>
+    </div>
+  </div>
+  <ul class="space-y-2">
+    <li>
+      <a
+        [routerLink]="['/dashboard']"
+        class="flex items-center space-x-3 p-2 rounded-md hover:bg-gradient hover:text-primary-500"
+        [ngClass]="{ 'bg-primary-500': selectedLinkIndex === 0 }"
+        (click)="selectedLinkIndex = 0"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-5 h-5 fill-current">
+          <!-- SVG path for Dashboard -->
+        </svg>
+        <span>Dashboard</span>
+      </a>
+    </li>
+    <li>
+      <a
+        [routerLink]="['/teacher-dashboard']"
+        class="flex items-center space-x-3 p-2 rounded-md hover:bg-gradient hover:text-primary-500"
+        [ngClass]="{ 'bg-primary-500': selectedLinkIndex === 1 }"
+        (click)="selectedLinkIndex = 1"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-5 h-5 fill-current">
+          <!-- SVG path for Alumni -->
+        </svg>
+        <span>Alumni</span>
+      </a>
+    </li>
+    <!-- Add more navigation links as needed -->
+  </ul>
+  <button
+  (click)="toggleSidebar()"
+  class="align-bottom left-0 text-pink10 hover:text-gray-300 focus:outline-none focus:text-gray-300 z-10 p-3"
+>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="3"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    class="w-12 h-12"
+  >
+    <line x1="21" y1="10" x2="3" y2="10"></line>
+    <line x1="21" y1="6" x2="3" y2="6"></line>
+    <line x1="21" y1="14" x2="3" y2="14"></line>
+    <line x1="21" y1="18" x2="3" y2="18"></line>
+  </svg>
+</button>
+</div>

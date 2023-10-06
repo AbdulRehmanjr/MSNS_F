@@ -10,7 +10,6 @@ import { PasswordModule } from 'primeng/password';
 import { MessagesModule } from 'primeng/messages';
 
 import { SignupComponent } from '../../components/general/signup/signup.component';
-import { SharedModule } from '../shared/shared.module';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { PasswordToggleDirective } from 'src/app/directives/password-toggle.directive';
@@ -28,7 +27,6 @@ const routes: Routes  = [
   ],
   imports: [
     ToastModule,
-    SharedModule,
     MessagesModule,
     PasswordModule,
     ReactiveFormsModule,

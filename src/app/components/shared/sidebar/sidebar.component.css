@@ -1,0 +1,23 @@
+/* sidebar.component.css */
+.sidebar {
+  transition: transform 0.2s ease-in-out;
+  transform: translateX(0);
+}
+
+.sidebar.hidden {
+  transform: translateX(-100%);
+}
+
+.sidebar ul li a {
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.sidebar ul li a:hover {
+  background-color: #cdbd5e; /* Change to your desired hover background color */
+  color: #1E293B; /* Change to your desired hover text color */
+}
+
+.sidebar ul li a.bg-primary-500 {
+  background-color: #F59E0B; /* Change to your primary background color */
+  color: white;
+}
