@@ -15,7 +15,6 @@ import { SharedModule } from '../shared/shared.module';
 //components
 import { AdminComponent } from './admin.component';
 import { DashboardComponent } from 'src/app/components/admin/dashboard/dashboard.component';
-import { SidebarComponent } from '../../components/admin/sidebar/sidebar.component';
 import { TeachersListComponent } from '../../components/admin/teachers-list/teachers-list.component';
 import { FeeStructureComponent } from '../../components/admin/fee-structure/fee-structure.component';
 
@@ -34,7 +33,6 @@ export const routes: Routes = [
   declarations: [
     AdminComponent,
     DashboardComponent,
-    SidebarComponent,
     TeachersListComponent,
     FeeStructureComponent
   ],
@@ -42,9 +40,9 @@ export const routes: Routes = [
     DialogModule,
     TableModule,
     ToastModule,
+    SharedModule,
     ReactiveFormsModule,
     FormsModule,
-    SharedModule,
     CommonModule,
     RouterModule.forChild(routes)
   ],exports:[
