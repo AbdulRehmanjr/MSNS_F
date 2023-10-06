@@ -18,7 +18,6 @@ import { PickListModule } from 'primeng/picklist';
 
 // componenets
 import { TeacherComponent } from './teacher.component';
-import { SidebarComponent } from '../../components/teacher/sidebar/sidebar.component';
 import { DashboardComponent } from '../../components/teacher/dashboard/dashboard.component';
 import { StudentListComponent } from '../../components/teacher/student-list/student-list.component';
 import { AddStudentComponent } from '../../components/teacher/add-student/add-student.component';
@@ -49,7 +48,6 @@ const routes:Routes = [
   declarations: [
     ClassDetailComponent,
     TeacherComponent,
-    SidebarComponent,
     DashboardComponent,
     StudentListComponent,
     AddStudentComponent,
