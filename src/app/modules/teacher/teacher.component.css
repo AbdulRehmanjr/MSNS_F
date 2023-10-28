@@ -1,11 +1,11 @@
 .height{
   height: 84.5vh;
 }
-/* aside{
+aside{
   position: sticky;
   top:70px;
   left: 0;
-} */
+}
 .nav-link.active{
   background-color: #007437;
 }
