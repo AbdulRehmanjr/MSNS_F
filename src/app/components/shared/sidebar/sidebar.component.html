@@ -1,4 +1,4 @@
-<div class="sidebar bg-grn-p-one text-white min-h-full static inset-y-0 left-0 w-60 px-4 py-6 shadow-lg transition-all duration-200 ease-in-out">
+<div class="sticky top-[4rem] :z-20 sidebar bg-grn-p-one text-white   px-4 py-6 shadow-lg h-full">
 
   <div class="flex items-center justify-between mb-6">
     <div class="flex items-center space-x-4">
@@ -12,10 +12,9 @@
   <ul class="space-y-2">
     <li>
       <a
-        [routerLink]="['/dashboard']"
+        [routerLink]="['/admin/dashboard']"
         class="flex items-center space-x-3 p-2 rounded-md hover:bg-gradient hover:text-primary-500"
-        [ngClass]="{ 'bg-primary-500': selectedLinkIndex === 0 }"
-        (click)="selectedLinkIndex = 0"
+       routerLinkActive="active"
       >
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-5 h-5 fill-current">
           <!-- SVG path for Dashboard -->
@@ -26,13 +25,34 @@
     <li>
       <a
       [routerLink]="['/teacher/dashboard']" class="flex items-center space-x-3 p-2 rounded-md hover:bg-gradient hover:text-primary-500"
-        [ngClass]="{ 'bg-primary-500': selectedLinkIndex === 1 }"
-        (click)="selectedLinkIndex = 1"
+      routerLinkActive="active"
       >
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-5 h-5 fill-current">
           <!-- SVG path for Alumni -->
         </svg>
         <span>Alumni</span>
+      </a>
+    </li>
+    <li>
+      <a
+      [routerLink]="['/teacher/dashboard']" class="flex items-center space-x-3 p-2 rounded-md hover:bg-gradient hover:text-primary-500"
+      routerLinkActive="active"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-5 h-5 fill-current">
+          <!-- SVG path for Alumni -->
+        </svg>
+        <span>Students</span>
+      </a>
+    </li>
+    <li>
+      <a
+      [routerLink]="['/about']" class="flex items-center space-x-3 p-2 rounded-md hover:bg-gradient hover:text-primary-500"
+      routerLinkActive="active"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-5 h-5 fill-current">
+          <!-- SVG path for Alumni -->
+        </svg>
+        <span>About</span>
       </a>
     </li>
     <!-- Add more navigation links as needed -->

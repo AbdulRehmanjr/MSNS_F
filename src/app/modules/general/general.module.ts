@@ -17,9 +17,6 @@ import { AboutComponent } from '../../components/general/about/about.component';
 import { SharedModule } from "../shared/shared.module";
 
 const routes: Routes  = [
-{
-  path: 'about', component:AboutComponent
-}
 ]
 
 @NgModule({

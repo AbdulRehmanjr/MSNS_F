@@ -9,13 +9,15 @@ import { TeacherModule } from './modules/teacher/teacher.module';
 import { AdminModule } from './modules/admin/admin.module';
 import { GeneralModule } from './modules/general/general.module';
 import { SharedModule } from './modules/shared/shared.module';
+import { SignupComponent } from './components/general/signup/signup.component';
+import { AboutComponent } from './components/general/about/about.component';
 
 
 
 const routes:Routes = [
-  {
-    path:'login',component:LoginComponent,
-  },
+  {path:'login',component:LoginComponent},
+  {path:'signup',component:SignupComponent},
+  { path: 'about', component:AboutComponent},
   {
     path:'',redirectTo:'login',pathMatch:'full'
   }
