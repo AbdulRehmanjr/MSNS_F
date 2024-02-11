@@ -35,7 +35,7 @@
     </li>
     <li>
       <a
-      [routerLink]="['/teacher/dashboard']" class="flex items-center space-x-3 p-2 rounded-md hover:bg-gradient hover:text-primary-500"
+      [routerLink]="['/teacher/student-list']" class="flex items-center space-x-3 p-2 rounded-md hover:bg-gradient hover:text-primary-500"
       routerLinkActive="active"
       >
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-5 h-5 fill-current">
@@ -53,6 +53,17 @@
           <!-- SVG path for Alumni -->
         </svg>
         <span>About</span>
+      </a>
+    </li>
+    <li>
+      <a
+      [routerLink]="['/admin/preferences']" class="flex items-center space-x-3 p-2 rounded-md hover:bg-gradient hover:text-primary-500"
+      routerLinkActive="active"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-5 h-5 fill-current">
+          <!-- SVG path for Alumni -->
+        </svg>
+        <span>Preferences</span>
       </a>
     </li>
     <!-- Add more navigation links as needed -->
