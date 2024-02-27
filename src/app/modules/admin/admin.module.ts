@@ -19,6 +19,10 @@ import { DashboardComponent } from 'src/app/components/admin/dashboard/dashboard
 import { TeachersListComponent } from '../../components/admin/teachers-list/teachers-list.component';
 import { FeeStructureComponent } from '../../components/admin/fee-structure/fee-structure.component';
 import { PreferencesComponent } from 'src/app/components/admin/preferences/preferences.component';
+import { AcademicsComponent } from 'src/app/components/admin/academics/academics.component';
+import { RegistrationComponent } from 'src/app/components/admin/registration/registration.component';
+import { StdregComponent } from 'src/app/components/admin/registration/student/stdreg/stdreg.component';
+import { EmpregComponent } from 'src/app/components/admin/registration/teacher/empreg/empreg.component';
 
 export const routes: Routes = [
   {
@@ -27,6 +31,10 @@ export const routes: Routes = [
       {path:'teacher-list',component:TeachersListComponent},
       {path:'fee-structure',component:FeeStructureComponent},
       {path:'preferences',component:PreferencesComponent},
+      {path:'academics',component:AcademicsComponent},
+      {path:'registration',component:RegistrationComponent},
+      {path:'stdreg',component:StdregComponent},
+      {path:'empreg',component:EmpregComponent},
       {path:'',redirectTo:'dashboard',pathMatch:'full'}
     ]
   }
@@ -38,7 +46,11 @@ export const routes: Routes = [
     DashboardComponent,
     TeachersListComponent,
     FeeStructureComponent,
-    PreferencesComponent
+    PreferencesComponent,
+    AcademicsComponent,
+    RegistrationComponent,
+    StdregComponent,
+    EmpregComponent
   ],
   imports: [
     DialogModule,

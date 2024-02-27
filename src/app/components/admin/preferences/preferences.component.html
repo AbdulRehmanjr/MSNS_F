@@ -1,22 +1,82 @@
-<section class="h-screen bg-[url('assets\jpg\Schoolview.jpg')] bg-no-repeat bg-cover bg-center brightness-50"></section>
-<div class="absolute top-1/2 left-1/2 transform transition-transform hover:scale-105 -translate-x-1/2 -translate-y-1/2 z-[10000] bg-green-200 bg-opacity-30 backdrop-blur-md p-10 h-fit">
-<div class="mx-auto flex just align-content-center md:min-h-0">
-    <div class="max-w-md text-center space-y-8">
-      <h2 class="mb-2 text-5xl font-bold leading-none text-yellow10 md:text-7xl">
-        ERROR 403!
-      </h2>
-      <h4 class="text-2xl font-semibold leading-tight text-gray-950">
-        Oops! This Page is not yet Completed.
-      </h4>
-      <p class="text-lg text-grn-p-three">
-        STAY TUNED with MSNS-LMS®.
-      </p>
-      <a
-        routerLink="/admin/dashboard"
-        class="inline-block rounded-lg bg-bg-grn6 px-8 py-3 text-center text-base font-semibold text-white transition hover:bg-primary-light hover:text-purple-950"
-      >
-        I UNDERSTAND
-      </a>
+<div class="bg-white px-4 py-5 min-h-screen md:px-6 lg:px-8 overflow-y-auto">
+  <!----------------------- Cards ------------------------->
+  <div class="grid grid-cols-4 gap-2">
+    <div class="col-span-4 md:col-span-2 lg:col-span-1 rounded-lg bg-white p-6 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-green-800 justify-center items-center">
+      <h5 class="mb-4 text-xl font-extrabold leading-tight text-yellow10 text-center">
+        System Management
+      </h5>
+      <hr class="mb-4 w-full border-black border-opacity-20 dark:border-white dark:border-opacity-20">
+      <img src="assets/admin_icons/setting-round-3d.png" alt="settings" class="mx-auto mb-2 w-16 h-16">
+      <div class="flex items-center justify-center">
+      <button
+        type="button"
+        class="inline-block rounded bg-pink10 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
+        data-te-ripple-init
+        data-te-ripple-color="light" routerLink='/admin/teacher-list'>
+        Manage Settings</button>
+      </div>
+      </div>
+
+  <div class="col-span-4 md:col-span-2 lg:col-span-1 rounded-lg bg-white p-6 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-green-800 justify-center items-center">
+    <h5 class="mb-4 text-xl font-extrabold leading-tight text-yellow10 text-center">
+      Course Management
+    </h5>
+    <hr class="mb-4 w-full border-black border-opacity-20 dark:border-white dark:border-opacity-20">
+    <img src="assets/admin_icons/students.png" alt="Students" class="mx-auto mb-2 w-16 h-16">
+    <div class="flex items-center justify-center">
+    <button
+      type="button"
+      class="inline-block rounded bg-pink10 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
+      data-te-ripple-init
+      data-te-ripple-color="light"routerLink='/teacher/student-list'
+    >
+      Manage Courses
+    </button>
     </div>
-  </div>
+</div>
+
+<div class="col-span-4 md:col-span-2 lg:col-span-1 rounded-lg bg-white p-6 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-green-800 justify-center items-center">
+  <h5 class="mb-4 text-xl font-extrabold leading-tight text-yellow10 text-center">
+    User Profiels
+  </h5>
+  <hr class="mb-4 w-full border-black border-opacity-20 dark:border-white dark:border-opacity-20">
+  <img src="assets/admin_icons/docs-cert.png" alt="Teachers" class="mx-auto mb-2 w-16 h-16">
+  <div class="flex items-center justify-center">
+  <button
+    type="button"
+    class="inline-block rounded bg-pink10 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
+    data-te-ripple-init
+    data-te-ripple-color="light"
+  >
+    Manage Roles
+  </button>
+</div>
+</div>
+
+<div class="col-span-4 md:col-span-2 lg:col-span-1 rounded-lg bg-white p-6 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-green-800 justify-center items-center">
+  <h5 class="mb-4 text-xl font-extrabold leading-tight text-yellow10 text-center">
+    Fee Management
+  </h5>
+  <hr class="mb-4 w-full border-black border-opacity-20 dark:border-white dark:border-opacity-20">
+  <img src="assets/admin_icons/teacher2.png" alt="Teachers" class="mx-auto mb-2 w-16 h-16">
+  <div class="flex items-center justify-center">
+  <button
+    type="button"
+    class="inline-block rounded bg-pink10 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
+    data-te-ripple-init
+    data-te-ripple-color="light"routerLink='/admin/fee-structure'
+  >
+    Manage Dues
+  </button>
+</div>
+</div>
+</div>
+
+  <!-- Divider -->
+  <div class="divider my-4 mx-auto md:px-6 h-1 bg-grn-p-one"></div>
+  <div class="my-4 mx-auto md:px-6">
+    </div>
+  <!-- Divider -->
+
+
 </div>
