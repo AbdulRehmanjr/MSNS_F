@@ -20,6 +20,7 @@ import { TeachersListComponent } from '../../components/admin/teachers-list/teac
 import { FeeStructureComponent } from '../../components/admin/fee-structure/fee-structure.component';
 import { PreferencesComponent } from 'src/app/components/admin/preferences/preferences.component';
 import { AcademicsComponent } from 'src/app/components/admin/academics/academics.component';
+import { AboutComponent} from 'src/app/components/home/about/about.component';
 import { RegistrationComponent } from 'src/app/components/admin/registration/registration.component';
 import { StdregComponent } from 'src/app/components/admin/registration/student/stdreg/stdreg.component';
 import { EmpregComponent } from 'src/app/components/admin/registration/teacher/empreg/empreg.component';
@@ -32,6 +33,7 @@ export const routes: Routes = [
       {path:'fee-structure',component:FeeStructureComponent},
       {path:'preferences',component:PreferencesComponent},
       {path:'academics',component:AcademicsComponent},
+      {path:'about',component:AboutComponent},
       {path:'registration',component:RegistrationComponent},
       {path:'stdreg',component:StdregComponent},
       {path:'empreg',component:EmpregComponent},
@@ -48,6 +50,7 @@ export const routes: Routes = [
     FeeStructureComponent,
     PreferencesComponent,
     AcademicsComponent,
+    AboutComponent,
     RegistrationComponent,
     StdregComponent,
     EmpregComponent

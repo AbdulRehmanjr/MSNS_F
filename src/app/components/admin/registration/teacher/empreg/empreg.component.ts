@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./empreg.component.css']
 })
 export class EmpregComponent {
+products: any;
 
 }

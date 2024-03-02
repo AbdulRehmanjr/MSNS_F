@@ -1,160 +1,162 @@
-<form [formGroup]="studentForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="studentForm" (ngSubmit)="onSubmit()" class="student-form">
   <div class="row">
     <div class="col-md-6">
-      <div class="d-flex flex-column gap-2">
-        <label htmlFor="studentName">Student Name</label>
+      <div class="form-group">
+        <label for="studentName">Student Name</label>
         <input
           type="text"
-          class="form-input"
+          class="form-control"
           id="studentName"
           formControlName="studentName"
-          placeholder="Abdul Rehman"
+          placeholder="Name"
         />
-      </div>
-      <div
-        class="alert alert-danger"
-        *ngIf="
-          studentForm.get('studentName').invalid &&
-          studentForm.get('studentName').touched
-        "
-      >
-        Student Name is required.
+        <div
+          class="alert alert-danger"
+          *ngIf="
+            studentForm.get('studentName').invalid &&
+            studentForm.get('studentName').touched
+          "
+        >
+          Student Name is required.
+        </div>
       </div>
     </div>
 
     <div class="col-md-6">
-      <div class="d-flex flex-column gap-2">
-        <label htmlFor="fatherName">Father Name</label>
+      <div class="form-group">
+        <label for="fatherName">Father Name</label>
         <input
           type="text"
-          class="form-input"
+          class="form-control"
           id="fatherName"
           formControlName="fatherName"
           placeholder="Muhammad Nadeem"
         />
-      </div>
-      <div
-        class="alert alert-danger"
-        *ngIf="
-          studentForm.get('fatherName').invalid &&
-          studentForm.get('fatherName').touched
-        "
-      >
-        Father Name is required.
+        <div
+          class="alert alert-danger"
+          *ngIf="
+            studentForm.get('fatherName').invalid &&
+            studentForm.get('fatherName').touched
+          "
+        >
+          Father Name is required.
+        </div>
       </div>
     </div>
 
     <div class="col-md-4">
-      <div class="d-flex flex-column gap-2">
-        <label htmlFor="bForm">B Form</label>
+      <div class="form-group">
+        <label for="bForm">B Form</label>
         <input
           type="text"
-          class="form-input"
+          class="form-control"
           id="bForm"
           formControlName="bForm"
           placeholder="xxxx-xxxxxxxxxx-x"
         />
-      </div>
-      <div
-        class="alert alert-danger"
-        *ngIf="
-          studentForm.get('bForm').invalid &&
-          studentForm.get('bForm').touched
-        "
-      >
-        B-Form/CNIC Name is required.
+        <div
+          class="alert alert-danger"
+          *ngIf="
+            studentForm.get('bForm').invalid &&
+            studentForm.get('bForm').touched
+          "
+        >
+          B-Form/CNIC Name is required.
+        </div>
       </div>
     </div>
 
     <div class="col-md-4">
-      <div class="d-flex flex-column gap-2">
-        <label htmlFor="dateOfBirth">Date of Birth</label>
+      <div class="form-group">
+        <label for="dateOfBirth">Date of Birth</label>
         <input
           type="date"
-          class="form-input"
+          class="form-control"
           id="dateOfBirth"
           formControlName="dateOfBirth"
-
         />
-      </div>
-      <div
-        class="alert alert-danger"
-        *ngIf="
-          studentForm.get('dateOfBirth').invalid &&
-          studentForm.get('dateOfBirth').touched
-        "
-      >
-        Date Of Birth is required.
+        <div
+          class="alert alert-danger"
+          *ngIf="
+            studentForm.get('dateOfBirth').invalid &&
+            studentForm.get('dateOfBirth').touched
+          "
+        >
+          Date Of Birth is required.
+        </div>
       </div>
     </div>
+
     <div class="col-md-4">
-      <div class="d-flex flex-column gap-2">
-        <label htmlFor="picture">Picture</label>
+      <div class="form-group">
+        <label for="picture">Picture</label>
         <input
           type="file"
-          accept="image/**"
-          class="form-input"
+          accept="image/*"
+          class="form-control"
           id="picture"
           formControlName="picture"
           (change)="onFileSelect($event)"
         />
-      </div>
-      <div
-        class="alert alert-danger"
-        *ngIf="
-          studentForm.get('picture').invalid &&
-          studentForm.get('picture').touched
-        "
-      >
-        Picture  is required.
+        <div
+          class="alert alert-danger"
+          *ngIf="
+            studentForm.get('picture').invalid &&
+            studentForm.get('picture').touched
+          "
+        >
+          Picture is required.
+        </div>
       </div>
     </div>
 
     <div class="col-md-6">
-      <div class="d-flex flex-column gap-2">
-        <label htmlFor="contactPhone">Contact No.</label>
+      <div class="form-group">
+        <label for="contactPhone">Contact No.</label>
         <input
           type="tel"
-          patten="0-9{11}"
-          class="form-input"
+          pattern="0-9{11}"
+          class="form-control"
           id="contactPhone"
           formControlName="contactPhone"
           placeholder="+92 33x xxxxxxx"
         />
-      </div>
-      <div
-        class="alert alert-danger"
-        *ngIf="
-          studentForm.get('contactPhone').invalid &&
-          studentForm.get('contactPhone').touched
-        "
-      >
-        Contact No. is required.
+        <div
+          class="alert alert-danger"
+          *ngIf="
+            studentForm.get('contactPhone').invalid &&
+            studentForm.get('contactPhone').touched
+          "
+        >
+          Contact No. is required.
+        </div>
       </div>
     </div>
 
     <div class="col-md-6">
-      <div class="d-flex flex-column gap-2">
-        <label htmlFor="address">Address</label>
-        <input
+      <div class="form-group">
+        <label for="address">Address</label>
+        <textarea
           type="text"
-          class="form-input"
+          class="form-control"
           id="address"
           formControlName="address"
           placeholder="Mohallah Shah Jamal"
-        />
-      </div>
-      <div
-        class="alert alert-danger"
-        *ngIf="
-          studentForm.get('address').invalid &&
-          studentForm.get('address').touched
-        "
-      >
-        Address is required.
+          rows="3"
+        ></textarea>
+        <div
+          class="alert alert-danger"
+          *ngIf="
+            studentForm.get('address').invalid &&
+            studentForm.get('address').touched
+          "
+        >
+          Address is required.
+        </div>
       </div>
     </div>
-  </div>
+
+    </div>
 
   <button type="submit" class="btn btn-success my-2">Submit</button>
 </form>

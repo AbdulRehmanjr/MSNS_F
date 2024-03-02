@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
-  selector: 'app-about',
+  selector: 'admin-about',
   templateUrl: './about.component.html',
   styleUrls: ['./about.component.css']
 })

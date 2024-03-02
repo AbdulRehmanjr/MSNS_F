@@ -1,21 +1,366 @@
-<div class="flex bg-bg-light5 shadow-md py-2 px-4 items-center justify-between">
-  <h1 class="text-2xl font-bold text-gray-800">Manage Academics & Courses</h1>
-  <div class="hidden md:flex space-x-2">
-    <button
-    type="button"
-    class="inline-block rounded bg-blue-500 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-pink6 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
-    data-te-ripple-init
-    data-te-ripple-color="light"routerLink='/admin/fee-structure'
-  >
-    Add Course
-  </button>
-  <button
-  type="button"
-  class="inline-block rounded bg-blue-500 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-pink6 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
-  data-te-ripple-init
-  data-te-ripple-color="light"routerLink='/admin/fee-structure'
->
-  Evaluate
-</button>
+<div class="flex flex-col min-h-screen bg-gray-100">
+  <div class="bg-white shadow-md flex justify-between items-center py-2 px-4">
+    <h1 class="text-lg font-bold text-gray-800">Users</h1>
+    <div class="flex space-x-2">
+      <button class="px-3 py-2 text-sm font-semibold bg-green-500 text-white rounded-md hover:bg-green-700 focus:outline-none" (click)="openAddModal()">
+        Add New
+      </button>
+      <button class="px-3 py-2 text-sm font-semibold bg-blue-500 text-white rounded-md hover:bg-blue-700 focus:outline-none" (click)="openEditModal()">
+        Edit
+      </button>
+      <button class="px-3 py-2 text-sm font-semibold bg-red-500 text-white rounded-md hover:bg-red-700 focus:outline-none" (click)="deleteSelectedUser()">
+        Delete
+      </button>
+      <button class="px-3 py-2 text-sm font-semibold bg-gray-500 text-white rounded-md hover:bg-gray-700 focus:outline-none" (click)="saveUser()">
+        Save
+      </button>
+    </div>
   </div>
-</div>
+
+  <div class="flex-grow overflow-y-auto px-4 py-4">
+    <p-table
+    #dt
+    [value]="students"
+    dataKey="studentId"
+    [rowHover]="true"
+    [rows]="5"
+    [showCurrentPageReport]="true"
+    [rowsPerPageOptions]="[5, 10, 25]"
+    [tableStyle]="{ 'max-width': '50rem' }"
+    [paginator]="true"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [filterDelay]="0"
+    [globalFilterFields]="[
+      'studentId',
+      'studentName',
+      'fatherName',
+      'rollNumber',
+      'address'
+    ]"
+  >
+    <ng-template pTemplate="caption">
+      <div class="table-header">
+        List of Students
+        <span class="p-input-icon-left mx-3">
+          <input
+            type="text"
+            (input)="dt.filterGlobal($event.target['value'], 'contains')"
+            placeholder="Global Search"
+          />
+        </span>
+
+        <button type="button" class="btn btn-add" (click)="addStudent()">
+          <i class="fa-solid fa-plus px-2"></i>
+          New
+        </button>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th pSortableColumn="studentId" style="width: 10rem">
+          <div class="d-flex justify-content-between align-items-center">
+            Id
+            <p-sortIcon field="studentId"></p-sortIcon>
+            <p-columnFilter
+              type="text"
+              field="studentId"
+              display="menu"
+              class="ml-auto"
+            ></p-columnFilter>
+          </div>
+        </th>
+        <th style="min-width: 10rem">Picture</th>
+        <th pSortableColumn="studentName" style="min-width: 10rem">
+          <div class="d-flex justify-content-between align-items-center">
+            Student Name
+            <p-sortIcon field="studentName"></p-sortIcon>
+            <p-columnFilter
+              type="text"
+              field="studentName"
+              display="menu"
+              class="ml-auto"
+            ></p-columnFilter>
+          </div>
+        </th>
+        <th pSortableColumn="fatherName" style="min-width: 10rem">
+          <div class="d-flex justify-content-between align-items-center">
+            Father Name
+            <p-sortIcon field="fatherName"></p-sortIcon>
+            <p-columnFilter
+              type="text"
+              field="fatherName"
+              display="menu"
+              class="ml-auto"
+            ></p-columnFilter>
+          </div>
+        </th>
+        <th pSortableColumn="bForm" style="min-width: 10rem">
+          <div class="d-flex justify-content-between align-items-center">
+            B-Form
+            <p-sortIcon field="bForm"></p-sortIcon>
+            <p-columnFilter
+              type="text"
+              field="bForm"
+              display="menu"
+              class="ml-auto"
+            ></p-columnFilter>
+          </div>
+        </th>
+        <th pSortableColumn="dateOfBirth" style="min-width: 10rem">
+          <div class="d-flex justify-content-between align-items-center">
+            Date of Birth
+            <p-sortIcon field="dateOfBirth"></p-sortIcon>
+            <p-columnFilter
+              type="date"
+              field="dateOfBirth"
+              display="menu"
+              class="ml-auto"
+            ></p-columnFilter>
+          </div>
+        </th>
+        <th pSortableColumn="contactPhone" style="min-width: 10rem">
+          <div class="d-flex justify-content-between align-items-center">
+            Contact No.
+            <p-sortIcon field="contactPhone"></p-sortIcon>
+            <p-columnFilter
+              type="numeric"
+              field="contactPhone"
+              display="menu"
+              currency="USD"
+              class="ml-auto"
+            ></p-columnFilter>
+          </div>
+        </th>
+        <th pSortableColumn="address" style="min-width: 10rem">
+          <div class="d-flex justify-content-between align-items-center">
+            Address
+            <p-sortIcon field="address"></p-sortIcon>
+            <p-columnFilter
+              type="text"
+              field="address"
+              display="menu"
+              currency="USD"
+              class="ml-auto"
+            ></p-columnFilter>
+          </div>
+        </th>
+        <th style="width: 5rem"></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-student>
+      <tr class="p-selectable-row">
+        <td>
+          {{ student.studentId }}
+        </td>
+        <td>
+          <img src="data:image/jpeg; base64,{{ student?.picture }}" width="100" alt="student_picture" />
+        </td>
+        <td>
+          {{ student.studentName }}
+        </td>
+        <td>
+          {{ student.fatherName }}
+        </td>
+        <td>
+          {{ student.bForm }}
+        </td>
+        <td>
+          {{ student.dateOfBirth }}
+        </td>
+        <td>
+          {{ student.contactPhone }}
+        </td>
+        <td>
+          {{ student.address }}
+        </td>
+
+        <td>
+          <button
+            type="button"
+            class="btn btn-outline-success"
+            (click)="updateStudent(student)"
+          >
+          <i class="fa-solid fa-pen-to-square"></i> Edit
+          </button>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="8">No Student found.</td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+  <p-dialog
+    [(visible)]="editDialog"
+    header="Edit Student"
+    [modal]="true"
+    styleClass="dialog-style"
+    style="z-index: 9999999990"
+  >
+    <ng-template pTemplate="body">
+      <form #editForm="ngForm" (ngSubmit)="editSubmit()">
+        <div class="row">
+          <div class="col-12">
+            <label for="edit-image-input" class="edit-image-label my-2">
+              <input type="file" id="edit-image-input" class="edit-image-input" (change)="onChange($event)"/>
+              <img class="profile-pic" *ngIf="placeholder == undefined" src="data:image/jpeg; base64,{{ student?.picture }}" alt="profile picture" />
+              <img class="profile-pic" *ngIf="placeholder" [src]="placeholder" alt="profile picture" />
+            </label>
+          </div>
+          <div class="col-md-6">
+            <div class="d-flex flex-column gap-2">
+              <label htmlFor="studentName">Student Name</label>
+              <input
+              type="text"
+                class="form-input"
+                id="studentName"
+                name="studentName"
+                #studentName="ngModel"
+                aria-describedby="studentName-help"
+                [(ngModel)]="student.studentName"
+                required="true"
+              />
+            </div>
+            <ng-container *ngIf="studentName.touched && studentName.invalid && studentName.value === ''">
+              <div class="alert alert-danger" role="alert">
+                Student Name is required.
+              </div>
+            </ng-container>
+          </div>
+          <div class="col-md-6">
+            <div class="d-flex flex-column gap-2">
+              <label htmlFor="fatherName">Father Name</label>
+              <input
+              type="text"
+                class="form-input"
+                id="fatherName"
+                name="fatherName"
+                #fatherName="ngModel"
+                aria-describedby="FatherName-help"
+                [(ngModel)]="student.fatherName"
+              />
+            </div>
+            <ng-container
+              *ngIf="
+                fatherName.touched && fatherName.invalid && fatherName.value ==''
+              "
+            >
+              <div class="alert alert-danger" role="alert">
+                Father Name is required.
+              </div>
+            </ng-container>
+          </div>
+          <div class="col-md-6">
+            <div class="d-flex flex-column gap-2">
+              <label htmlFor="bForm">B Form</label>
+              <input
+                class="form-input"
+                id="bForm"
+                name="bForm"
+                #bForm="ngModel"
+                pattern="[0-9]{12}"
+                aria-describedby="bForm-help"
+                [(ngModel)]="student.bForm"
+              />
+            </div>
+            <ng-container *ngIf="bForm.touched && bForm.invalid">
+              <div
+                class="alert alert-danger"
+                role="alert"
+              >
+                B-Form/CNIC Name is required.
+              </div>
+            </ng-container>
+          </div>
+          <div class="col-md-6">
+            <div class="d-flex flex-column gap-2">
+              <label htmlFor="dateOfBirth">Date of Birth</label>
+              <input
+                class="form-input"
+                type="date"
+                id="dateOfBirth"
+                name="dateOfBirth"
+                #dateOfBirth="ngModel"
+                aria-describedby="dateOfBirth-help"
+                [(ngModel)]="student.dateOfBirth"
+              />
+            </div>
+            <ng-container *ngIf="dateOfBirth.touched && dateOfBirth.invalid">
+              <div class="alert alert-danger" role="alert">
+                Date Of Birth is required.
+              </div>
+            </ng-container>
+          </div>
+          <div class="col-md-6">
+            <div class="d-flex flex-column gap-2">
+              <label htmlFor="contactPhone">Contact No.</label>
+              <input
+                class="form-input"
+                type="tel"
+                pattern="[0-9]{11}"
+                id="contactPhone"
+                #contactPhone="ngModel"
+                name="contactPhone"
+                aria-describedby="contactPhone-help"
+                [(ngModel)]="student.contactPhone"
+              />
+            </div>
+            <ng-container *ngIf="contactPhone.touched && contactPhone.invalid">
+              <div class="alert alert-danger" role="alert">
+                Date Of Birth is required.
+              </div>
+            </ng-container>
+          </div>
+          <div class="col-md-6">
+            <div class="d-flex flex-column gap-2">
+              <label htmlFor="address">Address</label>
+              <input
+                class="form-input"
+                type="text"
+                id="address"
+                name="address"
+                #address="ngModel"
+                aria-describedby="address-help"
+                [(ngModel)]="student.address"
+              />
+            </div>
+            <ng-container *ngIf="address.touched && address.invalid">
+              <div
+                class="alert alert-danger p-2"
+                role="alert"
+                styel="width:fit-content;"
+              >
+                Address is required.
+              </div>
+            </ng-container>
+          </div>
+        </div>
+
+        <button
+          class="btn btn-success my-2"
+          type="submit"
+          (click)="editSubmit()"
+        >
+          <i class="fa-solid fa-pen-to-square"></i>
+          Update
+        </button>
+      </form>
+    </ng-template>
+  </p-dialog>
+
+  <p-dialog
+  [(visible)]="addDialog"
+  header="Add Student"
+  [modal]="true"
+  styleClass="dialog-style"
+  style="z-index: 9999999990"
+>
+  <ng-template pTemplate="body">
+  <admin-registration> (studentAdded)="hideDialog()" ></admin-registration>
+  </ng-template>
+</p-dialog>
+  </div>
+
+

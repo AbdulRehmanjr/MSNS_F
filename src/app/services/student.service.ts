@@ -8,6 +8,7 @@ import { Student } from '../classes/student';
   providedIn: 'root'
 })
 export class StudentService {
+  [x: string]: any;
 
   private url:string = `${environment.baseUrl}/${environment.student}`
 
